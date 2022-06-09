@@ -27,7 +27,7 @@ func GetLoto7Results() []*Loto7Results {
 	result := Loto7Results{}
 	data := []*Loto7Results{}
 
-	rows, err := Db.Query("select * from loto7_results order by time")
+	rows, err := Db.Query("select * from loto7_results order by time desc")
 	if err != nil {
 		panic(err.Error())
 	}

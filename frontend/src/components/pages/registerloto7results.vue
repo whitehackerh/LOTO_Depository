@@ -1,29 +1,29 @@
 <template>
     <HeaderComponent />
     <div class="inputTable">
-        <table border="1">
+        <table>
             <thead>
                 <tr>
-                    <th style="width:120px;">Time</th>
-                    <th style="width:100px;">①</th>
-                    <th style="width:100px;">②</th>
-                    <th style="width:100px;">③</th>
-                    <th style="width:100px;">④</th>
-                    <th style="width:100px;">⑤</th>
-                    <th style="width:100px;">⑥</th>
-                    <th style="width:100px;">⑦</th>
+                    <th id="time">Time</th>
+                    <th>①</th>
+                    <th>②</th>
+                    <th>③</th>
+                    <th>④</th>
+                    <th>⑤</th>
+                    <th>⑥</th>
+                    <th>⑦</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><input type="text" style="width:120px;" v-model="time"></td>
-                    <td><input type="text" style="width:100px;" v-model="data_1"></td>
-                    <td><input type="text" style="width:100px;" v-model="data_2"></td>
-                    <td><input type="text" style="width:100px;" v-model="data_3"></td>
-                    <td><input type="text" style="width:100px;" v-model="data_4"></td>
-                    <td><input type="text" style="width:100px;" v-model="data_5"></td>
-                    <td><input type="text" style="width:100px;" v-model="data_6"></td>
-                    <td><input type="text" style="width:100px;" v-model="data_7"></td>
+                    <td><input type="text" v-model="time"></td>
+                    <td><input type="text" v-model="data_1"></td>
+                    <td><input type="text" v-model="data_2"></td>
+                    <td><input type="text" v-model="data_3"></td>
+                    <td><input type="text" v-model="data_4"></td>
+                    <td><input type="text" v-model="data_5"></td>
+                    <td><input type="text" v-model="data_6"></td>
+                    <td><input type="text" v-model="data_7"></td>
                 </tr>
             </tbody>
         </table>
@@ -62,3 +62,17 @@ export default {
     }
 }
 </script>
+
+<style>
+.inputTable th,td {
+    width: 100px;
+}
+.inputTable th {
+    border: 1px solid #000066;
+    background: #66CCFF;
+}
+.inputTable td {
+    border: 1px solid #000066;
+    background: #ffffff;
+}
+</style>
