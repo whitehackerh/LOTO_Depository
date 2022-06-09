@@ -1,7 +1,6 @@
 package Service
 
 import (
-	"fmt"
 	"strconv"
 
 	model "../Model"
@@ -9,10 +8,8 @@ import (
 
 func SetLoto6Results(body map[string]string) bool {
 	param := body
-	fmt.Println(param)
 	data := make(map[string]int)
 	data["time"], _ = strconv.Atoi(param["time"])
-	fmt.Println(data["time"])
 	data["data_1"], _ = strconv.Atoi(param["data_1"])
 	data["data_2"], _ = strconv.Atoi(param["data_2"])
 	data["data_3"], _ = strconv.Atoi(param["data_3"])
