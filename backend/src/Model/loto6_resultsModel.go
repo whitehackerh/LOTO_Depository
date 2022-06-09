@@ -2,13 +2,15 @@ package Model
 
 import (
 	"database/sql"
+	"fmt"
 
 	// "net/http"
 
 	// "github.com/labstack/echo"
 
+	db "../DB"
+
 	_ "github.com/lib/pq"
-	// "github.com/pkg/errors"
 )
 
 // type Results struct {
@@ -34,11 +36,12 @@ type Loto6Results struct {
 var Db *sql.DB
 
 func init() {
-	var err error
-	Db, err = sql.Open("postgres", "user=postgres dbname=loto_depository password=ash0001 sslmode=disable")
-	if err != nil {
-		panic(err)
-	}
+	// var err error
+	// Db, err = sql.Open("postgres", "user=postgres dbname=loto_depository password=ash0001 sslmode=disable")
+	// if err != nil {
+	// 	panic(err)
+	// }
+	Db = db.ConnectDb()
 }
 
 func checkError(err error) {
@@ -116,4 +119,24 @@ func GetLoto6Results() []*Loto6Results {
 			Winning_number_4: result.Winning_number_4, Winning_number_5: result.Winning_number_5, Winning_number_6: result.Winning_number_6})
 	}
 	return data
+}
+
+func SetLoto6Results(data map[string]int) bool {
+	fmt.Println(data)
+	fmt.Println(data["data_2"])
+	fmt.Println(Db)
+	query := `INSERT INTO loto6_results(time, winning_number_1, winning_number_2, winning_number_3, winning_number_4, winning_number_5, winning_number_6) VALUES($1, $2, $3, $4, $5, $6, $7);`
+	//a := `INSERT INTO member (name, birthday, blood_type, hobby) VALUES (?, ?, ?, ?)`
+	fmt.Println(query)
+	// res, err := Db.Exec(`INSERT INTO loto6_results(time, winning_number_1, winning_number_2, winning_number_3, winning_number_4, winning_number_5, winning_number_6) VALUES(?, ?, ?, ?, ?, ?, ?);`, data["time"], data["data_1"], data["data_2"], data["data_3"], data["data_4"], data["data_5"], data["data_6"])
+	//res, err := Db.Exec("INSERT INTO loto6_results(time, winning_number_1, winning_number_2, winning_number_3, winning_number_4, winning_number_5, winning_number_6) VALUES(2, 2, 3, 4, 5, 6, 7);")
+	res, err := Db.Exec(query, data["time"], data["data_1"], data["data_2"], data["data_3"], data["data_4"], data["data_5"], data["data_6"])
+	//res, err := Db.Exec(query, 1, 2, 3, 4, 5, 6, 7)
+	// res, err := Db.Exec("INSERT INTO loyo6_results (time, winning_number_1, winning_number_2, winning_number_3, winning_number_4, winning_number_5, winning_number_6) VALUES(" + data["time"] + ", " + data["data_1"] + ", " + data["data_2"] + ", " + data["data_3"] + ", " + data["data_4"] + ", " + data["data_5"] + ", " + data["data_6"] + ")")
+	fmt.Println(res)
+	fmt.Println(err)
+	if err != nil {
+		return false
+	}
+	return true
 }
