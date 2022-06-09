@@ -18,6 +18,7 @@ func main() {
 	// Routing
 	e.GET("/getLoto6Results", controller.GetLoto6Results())
 	e.POST("/setLoto6Results", controller.SetLoto6Results())
+	e.GET("/getLoto7Results", controller.GetLoto7Results())
 
 	e.Logger.Fatal(e.Start(":8000"))
 }
