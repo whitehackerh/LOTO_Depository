@@ -1,7 +1,6 @@
 package Model
 
 import (
-	"database/sql"
 	"fmt"
 
 	// "net/http"
@@ -32,8 +31,6 @@ type Loto6Results struct {
 	Winning_number_5 int
 	Winning_number_6 int
 }
-
-var Db *sql.DB
 
 func init() {
 	// var err error
