@@ -1,6 +1,8 @@
 package Model
 
 import (
+	"fmt"
+
 	db "../DB"
 
 	_ "github.com/lib/pq"
@@ -38,4 +40,14 @@ func GetLoto7Results() []*Loto7Results {
 			Winning_number_4: result.Winning_number_4, Winning_number_5: result.Winning_number_5, Winning_number_6: result.Winning_number_6, Winning_number_7: result.Winning_number_7})
 	}
 	return data
+}
+
+func SetLoto7Results(data map[string]int) bool {
+	query := `INSERT INTO loto7_results(time, winning_number_1, winning_number_2, winning_number_3, winning_number_4, winning_number_5, winning_number_6, winning_number_7) VALUES($1, $2, $3, $4, $5, $6, $7, $8);`
+	res, err := Db.Exec(query, data["time"], data["data_1"], data["data_2"], data["data_3"], data["data_4"], data["data_5"], data["data_6"], data["data_7"])
+	fmt.Println(res)
+	if err != nil {
+		return false
+	}
+	return true
 }

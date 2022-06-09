@@ -19,6 +19,7 @@ func main() {
 	e.GET("/getLoto6Results", controller.GetLoto6Results())
 	e.POST("/setLoto6Results", controller.SetLoto6Results())
 	e.GET("/getLoto7Results", controller.GetLoto7Results())
+	e.POST("/setLoto7Results", controller.SetLoto7Results())
 
 	e.Logger.Fatal(e.Start(":8000"))
 }
