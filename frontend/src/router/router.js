@@ -3,6 +3,7 @@ import Home from '../components/pages/home.vue'
 import Login from '../components/pages/login.vue'
 import Loto6Results from '../components/pages/loto6results.vue'
 import RegisterLoto6Results from '../components/pages/registerloto6results.vue'
+import ExpectLoto6 from '../components/pages/expectloto6.vue'
 import Loto7Results from '../components/pages/loto7results.vue'
 import RegisterLoto7Results from '../components/pages/registerloto7results.vue'
 
@@ -26,6 +27,11 @@ const routes = [
         path: '/registerloto6results',
         name: 'registerloto6results',
         component: RegisterLoto6Results
+    },
+    {
+        path: '/expectloto6',
+        name: 'expectloto6',
+        component: ExpectLoto6
     },
     {
         path: '/loto7results',
