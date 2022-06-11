@@ -6,23 +6,18 @@
             <thead>
                 <tr>
                     <th id="time">Time</th>
-                    <th>①</th>
-                    <th>②</th>
-                    <th>③</th>
-                    <th>④</th>
-                    <th>⑤</th>
-                    <th>⑥</th>
+                    <th colspan="6">Numbers</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="row in results" :key="row.Time">
                     <td>{{row.Time}}</td>
-                    <td>{{row.Winning_number_1}}</td>
-                    <td>{{row.Winning_number_2}}</td>
-                    <td>{{row.Winning_number_3}}</td>
-                    <td>{{row.Winning_number_4}}</td>
-                    <td>{{row.Winning_number_5}}</td>
-                    <td>{{row.Winning_number_6}}</td>
+                    <td>{{row.Number_1}}</td>
+                    <td>{{row.Number_2}}</td>
+                    <td>{{row.Number_3}}</td>
+                    <td>{{row.Number_4}}</td>
+                    <td>{{row.Number_5}}</td>
+                    <td>{{row.Number_6}}</td>
                 </tr>
             </tbody>
         </table>

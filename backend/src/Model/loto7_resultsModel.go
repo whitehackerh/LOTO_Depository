@@ -9,14 +9,14 @@ import (
 )
 
 type Loto7Results struct {
-	Time             int
-	Winning_number_1 int
-	Winning_number_2 int
-	Winning_number_3 int
-	Winning_number_4 int
-	Winning_number_5 int
-	Winning_number_6 int
-	Winning_number_7 int
+	Time     int
+	Number_1 int
+	Number_2 int
+	Number_3 int
+	Number_4 int
+	Number_5 int
+	Number_6 int
+	Number_7 int
 }
 
 func init() {
@@ -34,17 +34,17 @@ func GetLoto7Results() []*Loto7Results {
 	defer rows.Close()
 
 	for rows.Next() {
-		rows.Scan(&result.Time, &result.Winning_number_1, &result.Winning_number_2, &result.Winning_number_3,
-			&result.Winning_number_4, &result.Winning_number_5, &result.Winning_number_6, &result.Winning_number_7)
-		data = append(data, &Loto7Results{Time: result.Time, Winning_number_1: result.Winning_number_1, Winning_number_2: result.Winning_number_2, Winning_number_3: result.Winning_number_3,
-			Winning_number_4: result.Winning_number_4, Winning_number_5: result.Winning_number_5, Winning_number_6: result.Winning_number_6, Winning_number_7: result.Winning_number_7})
+		rows.Scan(&result.Time, &result.Number_1, &result.Number_2, &result.Number_3,
+			&result.Number_4, &result.Number_5, &result.Number_6, &result.Number_7)
+		data = append(data, &Loto7Results{Time: result.Time, Number_1: result.Number_1, Number_2: result.Number_2, Number_3: result.Number_3,
+			Number_4: result.Number_4, Number_5: result.Number_5, Number_6: result.Number_6, Number_7: result.Number_7})
 	}
 	return data
 }
 
-func SetLoto7Results(data map[string]int) bool {
-	query := `INSERT INTO loto7_results(time, winning_number_1, winning_number_2, winning_number_3, winning_number_4, winning_number_5, winning_number_6, winning_number_7) VALUES($1, $2, $3, $4, $5, $6, $7, $8);`
-	res, err := Db.Exec(query, data["time"], data["data_1"], data["data_2"], data["data_3"], data["data_4"], data["data_5"], data["data_6"], data["data_7"])
+func SetLoto7Results(input_data map[string]int) bool {
+	query := `INSERT INTO loto7_results(time, number_1, number_2, number_3, number_4, number_5, number_6, number_7) VALUES($1, $2, $3, $4, $5, $6, $7, $8);`
+	res, err := Db.Exec(query, input_data["time"], input_data["input_number_1"], input_data["input_number_2"], input_data["input_number_3"], input_data["input_number_4"], input_data["input_number_5"], input_data["input_number_6"], input_data["input_number_7"])
 	fmt.Println(res)
 	if err != nil {
 		return false
