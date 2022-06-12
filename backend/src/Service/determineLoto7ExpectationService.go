@@ -6,11 +6,11 @@ import (
 	model "../Model"
 )
 
-type DetermineLoto6Response struct {
+type DetermineLoto7Response struct {
 	Result string
 }
 
-func DetermineLoto6Expectation(body map[string]string) []*DetermineLoto6Response {
+func DetermineLoto7Expectation(body map[string]string) []*DetermineLoto7Response {
 	param := body
 	input_data := make(map[string]int)
 	input_data["time"], _ = strconv.Atoi(param["time"])
@@ -20,8 +20,9 @@ func DetermineLoto6Expectation(body map[string]string) []*DetermineLoto6Response
 	input_data["input_number_4"], _ = strconv.Atoi(param["input_number_4"])
 	input_data["input_number_5"], _ = strconv.Atoi(param["input_number_5"])
 	input_data["input_number_6"], _ = strconv.Atoi(param["input_number_6"])
+	input_data["input_number_7"], _ = strconv.Atoi(param["input_number_7"])
 
-	records := model.GetLoto6Results()
+	records := model.GetLoto7Results()
 	judge := false
 	for _, value := range records {
 		if input_data["input_number_1"] != value.Number_1 {
@@ -41,6 +42,9 @@ func DetermineLoto6Expectation(body map[string]string) []*DetermineLoto6Response
 		}
 		if input_data["input_number_6"] != value.Number_6 {
 			continue
+		}
+		if input_data["input_number_7"] != value.Number_7 {
+			continue
 		} else {
 			judge = true
 		}
@@ -48,13 +52,13 @@ func DetermineLoto6Expectation(body map[string]string) []*DetermineLoto6Response
 			break
 		}
 	}
-	determineStruct := DetermineLoto6Response{}
+	determineStruct := DetermineLoto7Response{}
 	if judge {
 		determineStruct.Result = "All Match"
 	} else {
 		determineStruct.Result = "Not Match"
 	}
-	response := []*DetermineLoto6Response{}
-	response = append(response, &DetermineLoto6Response{Result: determineStruct.Result})
+	response := []*DetermineLoto7Response{}
+	response = append(response, &DetermineLoto7Response{Result: determineStruct.Result})
 	return response
 }
