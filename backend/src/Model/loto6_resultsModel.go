@@ -40,7 +40,6 @@ func GetLoto6Results() []*Loto6Results {
 		data = append(data, &Loto6Results{Time: result.Time, Number_1: result.Number_1, Number_2: result.Number_2, Number_3: result.Number_3,
 			Number_4: result.Number_4, Number_5: result.Number_5, Number_6: result.Number_6})
 	}
-	fmt.Println(data)
 	return data
 }
 
