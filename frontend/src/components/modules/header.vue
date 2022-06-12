@@ -9,6 +9,7 @@
     <b-nav-item-dropdown id="loto7list" text="LOTO7" toggle-class="nav-link-custom">
       <b-dropdown-item><router-link to="/loto7results">Result</router-link></b-dropdown-item>
       <b-dropdown-item><router-link to="/registerloto7results">Register</router-link></b-dropdown-item>
+      <b-dropdown-item><router-link to="/expectloto7">Expect</router-link></b-dropdown-item>
     </b-nav-item-dropdown>
   </b-nav>
 </template>
