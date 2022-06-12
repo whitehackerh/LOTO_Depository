@@ -12,14 +12,14 @@
             <tbody>
                 <tr>
                     <td><input type="text" v-model="time"></td>
-                    <td><input type="text" v-model="data_1"></td>
-                    <td><input type="text" v-model="data_2"></td>
-                    <td><input type="text" v-model="data_3"></td>
-                    <td><input type="text" v-model="data_4"></td>
-                    <td><input type="text" v-model="data_5"></td>
-                    <td><input type="text" v-model="data_6"></td>
+                    <td><input type="text" v-model="input_number_1"></td>
+                    <td><input type="text" v-model="input_number_2"></td>
+                    <td><input type="text" v-model="input_number_3"></td>
+                    <td><input type="text" v-model="input_number_4"></td>
+                    <td><input type="text" v-model="input_number_5"></td>
+                    <td><input type="text" v-model="input_number_6"></td>
                     <td><button @click="(determineLoto6Expectation())">Check</button></td>
-                    <td><div v-show="infoflag">{{info.message}}</div></td>
+                    <td><div v-show="infoflag">{{info}}</div></td>
                 </tr>
             </tbody>
         </table>
@@ -37,22 +37,22 @@ export default {
     data() {
         return {
             time: '',
-            data_1: '',
-            data_2: '',
-            data_3: '',
-            data_4: '',
-            data_5: '',
-            data_6: '',
+            input_number_1: '',
+            input_number_2: '',
+            input_number_3: '',
+            input_number_4: '',
+            input_number_5: '',
+            input_number_6: '',
             info: '',
             infoflag: false
         }
     },
     methods: {
         async determineLoto6Expectation() {
-            const results = await axios.post("determineLoto6Expectation", {body: {time: this.time, data_1: this.data_1, data_2: this.data_2, data_3: this.data_3,
-                 data_4: this.data_4, data_5: this.data_5, data_6: this.data_6}})
+            const results = await axios.post("determineLoto6Expectation", {body: {time: this.time, input_number_1: this.input_number_1, input_number_2: this.input_number_2, input_number_3: this.input_number_3,
+                 input_number_4: this.input_number_4, input_number_5: this.input_number_5, input_number_6: this.input_number_6}})
             this.infoflag = true
-            this.info = results.data
+            this.info = results.data[0].Result
         }
     }
 }
@@ -60,7 +60,7 @@ export default {
 
 <style>
 .inputTable th,td {
-    width: 100px;
+    width: 60px;
 }
 .inputTable th {
     border: 1px solid #000066;
