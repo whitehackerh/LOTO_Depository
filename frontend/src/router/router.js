@@ -6,6 +6,7 @@ import RegisterLoto6Results from '../components/pages/registerloto6results.vue'
 import ExpectLoto6 from '../components/pages/expectloto6.vue'
 import Loto7Results from '../components/pages/loto7results.vue'
 import RegisterLoto7Results from '../components/pages/registerloto7results.vue'
+import ExpectLoto7 from '../components/pages/expectloto7.vue'
 
 const routes = [
     {
@@ -42,6 +43,11 @@ const routes = [
         path: '/registerloto7results',
         name: 'registerloto7results',
         component: RegisterLoto7Results
+    },
+    {
+        path: '/expectloto7',
+        name: 'expectloto7',
+        component: ExpectLoto7
     }
 ]
 
