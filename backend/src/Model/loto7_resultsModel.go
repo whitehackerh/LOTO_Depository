@@ -54,6 +54,7 @@ func SetLoto7Results(input_data map[string]int, input_row [7]string) bool {
 	if err2 != nil {
 		return false
 	}
+
 	for i := 0; i < len(input_row); i++ {
 		query3 := `UPDATE loto7_statistics SET count = (SELECT count + 1 FROM loto7_statistics WHERE number = ` + input_row[i] + ` ) WHERE number = ` + input_row[i]
 		_, err3 := Db.Exec(query3)
