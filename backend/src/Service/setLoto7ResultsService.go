@@ -17,6 +17,16 @@ func SetLoto7Results(body map[string]string) bool {
 	input_data["input_number_5"], _ = strconv.Atoi(param["input_number_5"])
 	input_data["input_number_6"], _ = strconv.Atoi(param["input_number_6"])
 	input_data["input_number_7"], _ = strconv.Atoi(param["input_number_7"])
-	insertResult := model.SetLoto7Results(input_data)
-	return insertResult
+
+	var input_column [7]string
+	input_column[0] = "n" + param["input_number_1"]
+	input_column[1] = "n" + param["input_number_2"]
+	input_column[2] = "n" + param["input_number_3"]
+	input_column[3] = "n" + param["input_number_4"]
+	input_column[4] = "n" + param["input_number_5"]
+	input_column[5] = "n" + param["input_number_6"]
+	input_column[6] = "n" + param["input_number_7"]
+
+	dbResult := model.SetLoto7Results(input_data, input_column)
+	return dbResult
 }
