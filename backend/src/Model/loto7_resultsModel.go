@@ -42,36 +42,31 @@ func GetLoto7Results() []*Loto7Results {
 	return data
 }
 
-func SetLoto7Results(input_data map[string]int, input_column [7]string) bool {
+func SetLoto7Results(input_data map[string]int, input_row [7]string) bool {
 	query := `INSERT INTO loto7_results(time, number_1, number_2, number_3, number_4, number_5, number_6, number_7) VALUES($1, $2, $3, $4, $5, $6, $7, $8);`
 	_, err := Db.Exec(query, input_data["time"], input_data["input_number_1"], input_data["input_number_2"], input_data["input_number_3"], input_data["input_number_4"], input_data["input_number_5"], input_data["input_number_6"], input_data["input_number_7"])
 	if err != nil {
 		return false
 	}
 
-	query2 := `UPDATE loto7_number_of_elections set time = (select time from loto7_number_of_elections) + 1`
+	query2 := `UPDATE loto7_statistics SET time = (SELECT MAX(loto7_results.time) FROM loto7_results)`
 	_, err2 := Db.Exec(query2)
 	if err2 != nil {
 		return false
 	}
-	for i := 0; i < len(input_column); i++ {
-		query3 := `UPDATE loto7_number_of_elections set ` + input_column[i] + ` = (select ` + input_column[i] + ` from loto7_number_of_elections) + 1`
+	for i := 0; i < len(input_row); i++ {
+		query3 := `UPDATE loto7_statistics SET count = (SELECT count + 1 FROM loto7_statistics WHERE number = ` + input_row[i] + ` ) WHERE number = ` + input_row[i]
 		_, err3 := Db.Exec(query3)
 		if err3 != nil {
 			return false
 		}
 	}
 
-	query4 := `UPDATE loto7_election_rate set time = (select time from loto7_election_rate) + 1`
-	_, err4 := Db.Exec(query4)
-	if err4 != nil {
-		return false
-	}
 	for i := 1; i <= 37; i++ {
 		castedCounter := strconv.Itoa(i)
-		query5 := `UPDATE loto7_election_rate set n` + castedCounter + ` = (select cast(loto7_number_of_elections.n` + castedCounter + ` as float) from loto7_number_of_elections) / (select time from loto7_election_rate)`
-		_, err5 := Db.Exec(query5)
-		if err5 != nil {
+		query4 := `UPDATE loto7_statistics SET rate = (SELECT CAST(count AS float) FROM loto7_statistics WHERE number = ` + castedCounter + ` ) / (SELECT time FROM loto7_statistics WHERE number = ` + castedCounter + ` ) WHERE number = ` + castedCounter
+		_, err4 := Db.Exec(query4)
+		if err4 != nil {
 			return false
 		}
 	}
