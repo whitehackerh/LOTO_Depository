@@ -11,6 +11,7 @@
       <b-dropdown-item><router-link to="/loto7results">Result</router-link></b-dropdown-item>
       <b-dropdown-item><router-link to="/registerloto7results">Register</router-link></b-dropdown-item>
       <b-dropdown-item><router-link to="/expectloto7">Expect</router-link></b-dropdown-item>
+      <b-dropdown-item><router-link to="/loto7statistics">Statistics</router-link></b-dropdown-item>
     </b-nav-item-dropdown>
   </b-nav>
 </template>
