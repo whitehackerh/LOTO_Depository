@@ -8,6 +8,7 @@ import Loto6Statistics from '../components/pages/loto6statistics.vue'
 import Loto7Results from '../components/pages/loto7results.vue'
 import RegisterLoto7Results from '../components/pages/registerloto7results.vue'
 import ExpectLoto7 from '../components/pages/expectloto7.vue'
+import Loto7Statistics from '../components/pages/loto7statistics.vue'
 
 const routes = [
     {
@@ -54,6 +55,11 @@ const routes = [
         path: '/expectloto7',
         name: 'expectloto7',
         component: ExpectLoto7
+    },
+    {
+        path: '/loto7statistics',
+        name: 'loto7statistics',
+        component: Loto7Statistics
     }
 ]
 
