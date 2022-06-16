@@ -1,7 +1,7 @@
 <template>
     <div>
         <HeaderComponent />
-        <p>{{results[0].Time}}</p>
+        <p>Time : {{results[0].Time}}</p><br><br>
         <div class="statisticsTable">
             <table>
                 <thead>
@@ -16,7 +16,7 @@
                     <tr v-for="(row, index) in results" :key="row.Number">
                         <td>{{index + 1}}</td>
                         <td>{{row.Number}}</td>
-                        <td>{{row.Rate}}</td>
+                        <td>{{Math.floor(row.Rate * 1000) / 1000}}%</td>
                         <td>{{row.Count}}</td>
                     </tr>
                 </tbody>
@@ -58,5 +58,8 @@ export default {
 .statisticsTable td {
     border: 1px solid #000066;
     background: #ffffff;
+}
+p {
+    float: left;
 }
 </style>
