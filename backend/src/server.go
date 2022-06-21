@@ -32,6 +32,7 @@ func main() {
 	e.POST("/setLoto7Results", controller.SetLoto7Results())
 	e.POST("/determineLoto7Expectation", controller.DetermineLoto7Expectation())
 	e.GET("/getLoto7Statistics", controller.GetLoto7Statistics())
+	e.GET("/downloadLoto7Results", controller.DownloadLoto7Results())
 
 	e.Logger.Fatal(e.Start(":8000"))
 }

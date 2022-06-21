@@ -1,6 +1,7 @@
 <template>
     <div>
         <HeaderComponent />
+        <button @click="downloadLoto7Results()">Download CSV</button><br><br>
         <div class="resultTable">
         <table>
             <thead>
@@ -46,6 +47,18 @@ export default {
         async getLoto7Results() {
             const results = await axios.get("/getLoto7Results");
             this.results = results.data
+        },
+        async downloadLoto7Results() {
+            axios.get("/downloadLoto7Results", { responseType: 'blob',})
+                .then((res) => {
+                    const url = window.URL.createObjectURL(new Blob([res.data]))
+                    const link = document.createElement('a')
+                    link.href = url
+                    link.setAttribute('download', 'Loto7Results.csv')
+                    document.body.appendChild(link)
+                    link.click()
+                    window.URL.revokeObjectURL(url)
+                })
         }
     }
 };
