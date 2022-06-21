@@ -29,8 +29,6 @@
 <script>
 import HeaderComponent from "../modules/header.vue";
 import axios from 'axios';
-//import { saveAs } from 'file-saver';
-//import Encoding from 'encoding-japanese';
 
 export default {
     name: 'Loto6ResultPage',
