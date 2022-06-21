@@ -3,8 +3,16 @@ package Model
 import db "../DB"
 
 type Loto6Statistics struct {
+	Rank   int
 	Number int
+	Count  int
+	Rate   float64
 	Time   int
+}
+
+type Loto6StatisticsCsv struct {
+	Rank   int
+	Number int
 	Count  int
 	Rate   float64
 }
@@ -16,14 +24,29 @@ func init() {
 func GetLoto6Statistics() []*Loto6Statistics {
 	statistics := Loto6Statistics{}
 	data := []*Loto6Statistics{}
-	rows, err := Db.Query("SELECT * FROM loto6_statistics ORDER BY count DESC")
+	rows, err := Db.Query("SELECT RANK() OVER(ORDER BY count DESC) AS Rank, Number, Count, Rate, Time FROM loto6_statistics ORDER BY count DESC")
 	if err != nil {
 		panic(err.Error())
 	}
 	defer rows.Close()
 	for rows.Next() {
-		rows.Scan(&statistics.Number, &statistics.Time, &statistics.Count, &statistics.Rate)
-		data = append(data, &Loto6Statistics{Number: statistics.Number, Time: statistics.Time, Count: statistics.Count, Rate: statistics.Rate})
+		rows.Scan(&statistics.Rank, &statistics.Number, &statistics.Count, &statistics.Rate, &statistics.Time)
+		data = append(data, &Loto6Statistics{Rank: statistics.Rank, Number: statistics.Number, Count: statistics.Count, Rate: statistics.Rate, Time: statistics.Time})
+	}
+	return data
+}
+
+func GetLoto6StatisticsCsv() []*Loto6StatisticsCsv {
+	statistics := Loto6StatisticsCsv{}
+	data := []*Loto6StatisticsCsv{}
+	rows, err := Db.Query("SELECT RANK() OVER(ORDER BY count DESC) AS Rank, Number, Count, Rate FROM loto6_statistics ORDER BY count DESC")
+	if err != nil {
+		panic(err.Error())
+	}
+	defer rows.Close()
+	for rows.Next() {
+		rows.Scan(&statistics.Rank, &statistics.Number, &statistics.Count, &statistics.Rate)
+		data = append(data, &Loto6StatisticsCsv{Rank: statistics.Rank, Number: statistics.Number, Count: statistics.Count, Rate: statistics.Rate})
 	}
 	return data
 }
