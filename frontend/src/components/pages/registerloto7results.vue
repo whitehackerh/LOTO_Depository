@@ -22,6 +22,7 @@
             </tbody>
         </table>
     </div>
+    <br><br>
     <button @click="setLoto7Results()">register</button>
 </template>
 
