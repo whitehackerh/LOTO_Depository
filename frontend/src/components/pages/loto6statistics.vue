@@ -1,7 +1,7 @@
 <template>
     <div>
         <HeaderComponent />
-        <button @click="downloadLoto6Statistics()">Download CSV</button><br><br>
+        <button id="buttonDownloadLoto6Statistics" @click="downloadLoto6Statistics()">Download CSV</button><br><br>
         <p>Time : {{results[0].Time}}</p><br><br>
         <div class="statisticsTable">
             <table>
@@ -9,16 +9,16 @@
                     <tr>
                         <th id="rank">Rank</th>
                         <th id="number">Number</th>
-                        <th id="rate">Rate</th>
                         <th id="count">Count</th>
+                        <th id="rate">Rate</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="row in results" :key="row.Number">
                         <td>{{row.Rank}}</td>
                         <td>{{row.Number}}</td>
-                        <td>{{Math.floor(row.Rate * 1000) / 1000}}%</td>
                         <td>{{row.Count}}</td>
+                        <td>{{Math.floor(row.Rate * 1000) / 1000}}%</td>
                     </tr>
                 </tbody>
             </table>
@@ -71,6 +71,9 @@ export default {
 .statisticsTable td {
     border: 1px solid #000066;
     background: #ffffff;
+}
+#buttonDownloadLoto6Statistics {
+    float: left;
 }
 p {
     float: left;
