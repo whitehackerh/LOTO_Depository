@@ -43,8 +43,6 @@ func DetermineLoto6Expectation(body map[string]string) []*DetermineLoto6Response
 			continue
 		} else {
 			judge = true
-		}
-		if judge {
 			break
 		}
 	}

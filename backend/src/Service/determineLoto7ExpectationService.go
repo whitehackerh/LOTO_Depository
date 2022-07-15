@@ -47,8 +47,6 @@ func DetermineLoto7Expectation(body map[string]string) []*DetermineLoto7Response
 			continue
 		} else {
 			judge = true
-		}
-		if judge {
 			break
 		}
 	}
