@@ -17,15 +17,20 @@ type Loto6Results struct {
 	Number_6 int
 }
 
+type Loto6LatelyResults struct {
+	Time     int
+	Number_1 int
+	Number_2 int
+	Number_3 int
+	Number_4 int
+	Number_5 int
+	Number_6 int
+}
+
 func init() {
 	Db = db.ConnectDb()
 }
 
-func checkError(err error) {
-	if err != nil {
-		panic(err)
-	}
-}
 func GetLoto6Results() []*Loto6Results {
 	result := Loto6Results{}
 	data := []*Loto6Results{}
@@ -74,4 +79,21 @@ func SetLoto6Results(input_data map[string]int, input_row [6]string) bool {
 	}
 
 	return true
+}
+
+func GetLoto6LatelyStatistics() []*Loto6LatelyResults {
+	result := Loto6LatelyResults{}
+	data := []*Loto6LatelyResults{}
+	rows, err := Db.Query("select * from loto6_results order by time desc LIMIT 10")
+	if err != nil {
+		panic(err.Error())
+	}
+	defer rows.Close()
+	for rows.Next() {
+		rows.Scan(&result.Time, &result.Number_1, &result.Number_2, &result.Number_3,
+			&result.Number_4, &result.Number_5, &result.Number_6)
+		data = append(data, &Loto6LatelyResults{Time: result.Time, Number_1: result.Number_1, Number_2: result.Number_2, Number_3: result.Number_3,
+			Number_4: result.Number_4, Number_5: result.Number_5, Number_6: result.Number_6})
+	}
+	return data
 }
