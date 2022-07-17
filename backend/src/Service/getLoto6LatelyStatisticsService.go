@@ -284,8 +284,11 @@ func GetLoto6LatelyStatistics() []Loto6LatelyStatistics {
 
 func addRank(lately_statistics []Loto6LatelyStatistics) []Loto6LatelyStatistics {
 	for i := 0; i <= 43; i++ {
-		if i <= 42 {
-			lately_statistics[i].Rank = i + 1
+		lately_statistics[i].Rank = 1
+		for j := 0; j < 43; j++ {
+			if lately_statistics[j].Count > lately_statistics[i].Count {
+				lately_statistics[i].Rank++
+			}
 		}
 	}
 	return lately_statistics
