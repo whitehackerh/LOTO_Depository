@@ -29,6 +29,7 @@ func main() {
 	e.GET("/getLoto6Statistics", controller.GetLoto6Statistics())
 	e.GET("/downloadLoto6Results", controller.DownloadLoto6Results())
 	e.GET("/downloadLoto6Statistics", controller.DownloadLoto6Statistics())
+	e.GET("/getLoto6LatelyStatistics", controller.GetLoto6LatelyStatistics())
 	e.GET("/getLoto7Results", controller.GetLoto7Results())
 	e.POST("/setLoto7Results", controller.SetLoto7Results())
 	e.POST("/determineLoto7Expectation", controller.DetermineLoto7Expectation())
