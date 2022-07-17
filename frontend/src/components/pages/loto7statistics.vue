@@ -3,7 +3,7 @@
         <HeaderComponent />
         <div class="contents">
         <div class="statistics">
-            <h3 id="AllTime"></h3><br><br>
+            <h3 id="AllTime">All Time</h3><br><br>
             <button id="buttonDownloadloto7Statistics" @click="downloadLoto7Statistics()">Download CSV</button><br><br>
             <p>Time : {{results[0].Time}}</p><br><br>
             <div class="statisticsTable">
@@ -29,6 +29,7 @@
         </div>
         <div class="latelyStatistics">
             <h3>Latest 10 Times</h3><br><br>
+            <button id="buttonDownloadLoto7LatelyStatistics" @click="downloadLoto7LatelyStatistics()">Download CSV</button><br><br>
             <p>Time : {{latelyResults[37].LatestTime10}} ~ {{latelyResults[37].LatestTime1}}</p><br><br>
             <div class="latelyStatisticsTable">
                 <table>
@@ -118,6 +119,20 @@ export default {
             const latelyResults = await axios.get("/getLoto7LatelyStatistics");
             this.latelyResults = latelyResults.data
         },
+        async downloadLoto7LatelyStatistics() {
+            axios.get("/downloadLoto7LatelyStatistics", { responseType: 'blob'})
+            .then((res) => {
+                const bom = new Uint8Array([0xef, 0xbb, 0xbf])
+                const url = window.URL.createObjectURL(new Blob([bom, res.data]))
+                const link = document.createElement('a')
+                link.href = url
+                link.setAttribute('download', 'Loto7LatelyStatistics.csv')
+                document.body.appendChild(link)
+                link.click()
+                window.URL.revokeObjectURL(url)
+
+            })
+        },
         convertResults() {
             for (let i = 0; i < 37; i++) {
                 if (this.latelyResults[i].Time1 == 1) {
@@ -203,6 +218,9 @@ export default {
     background: #ffffff;
 }
 #buttonDownloadloto7Statistics {
+    float: left;
+}
+#buttonDownloadLoto7LatelyStatistics {
     float: left;
 }
 p {

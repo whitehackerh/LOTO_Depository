@@ -7,7 +7,7 @@ import (
 	model "../Model"
 )
 
-type Loto6LatelyStatisticsForCsv struct {
+type Loto7LatelyStatisticsForCsv struct {
 	Rank   int
 	Number int
 	Count  int
@@ -23,15 +23,15 @@ type Loto6LatelyStatisticsForCsv struct {
 	Time10 string
 }
 
-func DownloadLoto6LatelyStatistics() {
-	data := model.GetLoto6LatelyStatistics()
-	lately_statistics := make([]Loto6LatelyStatisticsForCsv, 43)
+func DownloadLoto7LatelyStatistics() {
+	data := model.GetLoto7LatelyStatistics()
+	lately_statistics := make([]Loto7LatelyStatisticsForCsv, 37)
 	timeList := []string{"Rank", "Number", "Count", strconv.Itoa(data[0].Time), strconv.Itoa(data[1].Time), strconv.Itoa(data[2].Time), strconv.Itoa(data[3].Time), strconv.Itoa(data[4].Time),
 		strconv.Itoa(data[5].Time), strconv.Itoa(data[6].Time), strconv.Itoa(data[7].Time), strconv.Itoa(data[8].Time), strconv.Itoa(data[9].Time)}
 	counter := 0
 	for _, value := range data {
 		counter++
-		for i := 1; i <= 43; i++ {
+		for i := 1; i <= 37; i++ {
 			lately_statistics[i-1].Number = i
 			if value.Number_1 == i {
 				switch counter {
@@ -243,10 +243,45 @@ func DownloadLoto6LatelyStatistics() {
 				}
 				lately_statistics[i-1].Count++
 			}
+			if value.Number_7 == i {
+				switch counter {
+				case 1:
+					lately_statistics[i-1].Time1 = "○"
+					break
+				case 2:
+					lately_statistics[i-1].Time2 = "○"
+					break
+				case 3:
+					lately_statistics[i-1].Time3 = "○"
+					break
+				case 4:
+					lately_statistics[i-1].Time4 = "○"
+					break
+				case 5:
+					lately_statistics[i-1].Time5 = "○"
+					break
+				case 6:
+					lately_statistics[i-1].Time6 = "○"
+					break
+				case 7:
+					lately_statistics[i-1].Time7 = "○"
+					break
+				case 8:
+					lately_statistics[i-1].Time8 = "○"
+					break
+				case 9:
+					lately_statistics[i-1].Time9 = "○"
+					break
+				case 10:
+					lately_statistics[i-1].Time10 = "○"
+					break
+				}
+				lately_statistics[i-1].Count++
+			}
 		}
 	}
 
-	lately_statistics = convertStringLoto6(lately_statistics)
+	lately_statistics = convertStringLoto7(lately_statistics)
 	sort.Slice(lately_statistics, func(i, j int) bool {
 		if lately_statistics[i].Count > lately_statistics[j].Count {
 			return true
@@ -257,9 +292,9 @@ func DownloadLoto6LatelyStatistics() {
 		}
 		return false
 	})
-	lately_statistics = addRankForLoto6Csv(lately_statistics)
-	line := make([][]string, 43)
-	for i := 0; i <= 42; i++ {
+	lately_statistics = addRankForLoto7Csv(lately_statistics)
+	line := make([][]string, 37)
+	for i := 0; i <= 36; i++ {
 		line[i] = make([]string, 13)
 		for j := 0; j <= 12; j++ {
 			switch j {
@@ -305,11 +340,11 @@ func DownloadLoto6LatelyStatistics() {
 			}
 		}
 	}
-	Write_csv_col_header("Loto6LatelyStatistics.csv", timeList, line)
+	Write_csv_col_header("Loto7LatelyStatistics.csv", timeList, line)
 }
 
-func convertStringLoto6(lately_statistics []Loto6LatelyStatisticsForCsv) []Loto6LatelyStatisticsForCsv {
-	for i := 0; i < 43; i++ {
+func convertStringLoto7(lately_statistics []Loto7LatelyStatisticsForCsv) []Loto7LatelyStatisticsForCsv {
+	for i := 0; i < 37; i++ {
 		if lately_statistics[i].Time1 == "" {
 			lately_statistics[i].Time1 = "---"
 		}
@@ -344,10 +379,10 @@ func convertStringLoto6(lately_statistics []Loto6LatelyStatisticsForCsv) []Loto6
 	return lately_statistics
 }
 
-func addRankForLoto6Csv(lately_statistics []Loto6LatelyStatisticsForCsv) []Loto6LatelyStatisticsForCsv {
-	for i := 0; i <= 42; i++ {
+func addRankForLoto7Csv(lately_statistics []Loto7LatelyStatisticsForCsv) []Loto7LatelyStatisticsForCsv {
+	for i := 0; i <= 36; i++ {
 		lately_statistics[i].Rank = 1
-		for j := 0; j <= 42; j++ {
+		for j := 0; j <= 36; j++ {
 			if lately_statistics[j].Count > lately_statistics[i].Count {
 				lately_statistics[i].Rank++
 			}
