@@ -19,6 +19,17 @@ type Loto7Results struct {
 	Number_7 int
 }
 
+type Loto7LatelyResults struct {
+	Time     int
+	Number_1 int
+	Number_2 int
+	Number_3 int
+	Number_4 int
+	Number_5 int
+	Number_6 int
+	Number_7 int
+}
+
 func init() {
 	Db = db.ConnectDb()
 }
@@ -73,4 +84,21 @@ func SetLoto7Results(input_data map[string]int, input_row [7]string) bool {
 	}
 
 	return true
+}
+
+func GetLoto7LatelyStatistics() []*Loto7LatelyResults {
+	result := Loto7LatelyResults{}
+	data := []*Loto7LatelyResults{}
+	rows, err := Db.Query("select * from loto7_results order by time desc LIMIT 10")
+	if err != nil {
+		panic(err.Error())
+	}
+	defer rows.Close()
+	for rows.Next() {
+		rows.Scan(&result.Time, &result.Number_1, &result.Number_2, &result.Number_3,
+			&result.Number_4, &result.Number_5, &result.Number_6, &result.Number_7)
+		data = append(data, &Loto7LatelyResults{Time: result.Time, Number_1: result.Number_1, Number_2: result.Number_2, Number_3: result.Number_3,
+			Number_4: result.Number_4, Number_5: result.Number_5, Number_6: result.Number_6, Number_7: result.Number_7})
+	}
+	return data
 }
