@@ -45,13 +45,13 @@ func GetLoto6LatelyStatistics() []Loto6LatelyStatistics {
 	lately_statistics[0].LatestTime8 = data[7].Time
 	lately_statistics[0].LatestTime9 = data[8].Time
 	lately_statistics[0].LatestTime10 = data[9].Time
-	count := 0
+	counter := 0
 	for _, value := range data {
-		count++
+		counter++
 		for i := 1; i <= 43; i++ {
 			lately_statistics[i].Number = i
 			if value.Number_1 == i {
-				switch count {
+				switch counter {
 				case 1:
 					lately_statistics[i].Time1 = 1
 					break
@@ -86,7 +86,7 @@ func GetLoto6LatelyStatistics() []Loto6LatelyStatistics {
 				lately_statistics[i].Count++
 			}
 			if value.Number_2 == i {
-				switch count {
+				switch counter {
 				case 1:
 					lately_statistics[i].Time1 = 1
 					break
@@ -121,7 +121,7 @@ func GetLoto6LatelyStatistics() []Loto6LatelyStatistics {
 				lately_statistics[i].Count++
 			}
 			if value.Number_3 == i {
-				switch count {
+				switch counter {
 				case 1:
 					lately_statistics[i].Time1 = 1
 					break
@@ -156,7 +156,7 @@ func GetLoto6LatelyStatistics() []Loto6LatelyStatistics {
 				lately_statistics[i].Count++
 			}
 			if value.Number_4 == i {
-				switch count {
+				switch counter {
 				case 1:
 					lately_statistics[i].Time1 = 1
 					break
@@ -191,7 +191,7 @@ func GetLoto6LatelyStatistics() []Loto6LatelyStatistics {
 				lately_statistics[i].Count++
 			}
 			if value.Number_5 == i {
-				switch count {
+				switch counter {
 				case 1:
 					lately_statistics[i].Time1 = 1
 					break
@@ -226,7 +226,7 @@ func GetLoto6LatelyStatistics() []Loto6LatelyStatistics {
 				lately_statistics[i].Count++
 			}
 			if value.Number_6 == i {
-				switch count {
+				switch counter {
 				case 1:
 					lately_statistics[i].Time1 = 1
 					break
@@ -278,14 +278,14 @@ func GetLoto6LatelyStatistics() []Loto6LatelyStatistics {
 		return false
 	})
 
-	lately_statistics = addRank(lately_statistics)
+	lately_statistics = addRankLoto6(lately_statistics)
 	return lately_statistics
 }
 
-func addRank(lately_statistics []Loto6LatelyStatistics) []Loto6LatelyStatistics {
-	for i := 0; i <= 43; i++ {
+func addRankLoto6(lately_statistics []Loto6LatelyStatistics) []Loto6LatelyStatistics {
+	for i := 0; i <= 42; i++ {
 		lately_statistics[i].Rank = 1
-		for j := 0; j < 43; j++ {
+		for j := 0; j <= 42; j++ {
 			if lately_statistics[j].Count > lately_statistics[i].Count {
 				lately_statistics[i].Rank++
 			}
