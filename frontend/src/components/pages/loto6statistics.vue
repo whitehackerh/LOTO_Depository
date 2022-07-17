@@ -122,52 +122,52 @@ export default {
                 if (this.latelyResults[i].Time1 == 1) {
                     this.latelyResults[i].Time1 = '○';
                 } else {
-                    this.latelyResults[i].Time1 = '×';
+                    this.latelyResults[i].Time1 = '---';
                 }
                 if (this.latelyResults[i].Time2 == 1) {
                     this.latelyResults[i].Time2 = '○';
                 } else {
-                    this.latelyResults[i].Time2 = '×';
+                    this.latelyResults[i].Time2 = '---';
                 }
                 if (this.latelyResults[i].Time3 == 1) {
                     this.latelyResults[i].Time3 = '○';
                 } else {
-                    this.latelyResults[i].Time3 = '×';
+                    this.latelyResults[i].Time3 = '---';
                 }
                 if (this.latelyResults[i].Time4 == 1) {
                     this.latelyResults[i].Time4 = '○';
                 } else {
-                    this.latelyResults[i].Time4 = '×';
+                    this.latelyResults[i].Time4 = '---';
                 }
                 if (this.latelyResults[i].Time5 == 1) {
                     this.latelyResults[i].Time5 = '○';
                 } else {
-                    this.latelyResults[i].Time5 = '×';
+                    this.latelyResults[i].Time5 = '---';
                 }
                 if (this.latelyResults[i].Time6 == 1) {
                     this.latelyResults[i].Time6 = '○';
                 } else {
-                    this.latelyResults[i].Time6 = '×';
+                    this.latelyResults[i].Time6 = '---';
                 }
                 if (this.latelyResults[i].Time7 == 1) {
                     this.latelyResults[i].Time7 = '○';
                 } else {
-                    this.latelyResults[i].Time7 = '×';
+                    this.latelyResults[i].Time7 = '---';
                 }
                 if (this.latelyResults[i].Time8 == 1) {
                     this.latelyResults[i].Time8 = '○';
                 } else {
-                    this.latelyResults[i].Time8 = '×';
+                    this.latelyResults[i].Time8 = '---';
                 }
                 if (this.latelyResults[i].Time9 == 1) {
                     this.latelyResults[i].Time9 = '○';
                 } else {
-                    this.latelyResults[i].Time9 = '×';
+                    this.latelyResults[i].Time9 = '---';
                 }
                 if (this.latelyResults[i].Time10 == 1) {
                     this.latelyResults[i].Time10 = '○';
                 } else {
-                    this.latelyResults[i].Time10 = '×';
+                    this.latelyResults[i].Time10 = '---';
                 }
             }
         }
