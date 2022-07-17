@@ -28,7 +28,9 @@
             </div>
         </div>
         <div class="latelyStatistics">
-        <h3>Latest 10 Times</h3><br><br>
+            <h3>Latest 10 Times</h3><br><br>
+            <button id="buttonDownloadLoto6LatelyStatistics" @click="downloadLoto6LatelyStatistics()">Download CSV</button><br><br>
+            <p>Time : {{latelyResults[43].LatestTime10}} ~ {{latelyResults[43].LatestTime1}}</p><br><br>
             <div class="latelyStatisticsTable">
                 <table>
                     <thead>
@@ -117,6 +119,20 @@ export default {
             const latelyResults = await axios.get("/getLoto6LatelyStatistics");
             this.latelyResults = latelyResults.data
         },
+        async downloadLoto6LatelyStatistics() {
+            axios.get("/downloadLoto6LatelyStatistics", { responseType: 'blob'})
+            .then((res) => {
+                const bom = new Uint8Array([0xef, 0xbb, 0xbf])
+                const url = window.URL.createObjectURL(new Blob([bom, res.data]))
+                const link = document.createElement('a')
+                link.href = url
+                link.setAttribute('download', 'Loto6LatelyStatistics.csv')
+                document.body.appendChild(link)
+                link.click()
+                window.URL.revokeObjectURL(url)
+
+            })
+        },
         convertResults() {
             for (let i = 0; i < 43; i++) {
                 if (this.latelyResults[i].Time1 == 1) {
@@ -202,6 +218,9 @@ export default {
     background: #ffffff;
 }
 #buttonDownloadLoto6Statistics {
+    float: left;
+}
+#buttonDownloadLoto6LatelyStatistics {
     float: left;
 }
 p {
