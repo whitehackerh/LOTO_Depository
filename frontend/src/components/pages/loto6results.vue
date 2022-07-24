@@ -8,6 +8,7 @@
                 <tr>
                     <th id="time">Time</th>
                     <th colspan="6">Numbers</th>
+                    <th>Edit</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,6 +20,7 @@
                     <td>{{row.Number_4}}</td>
                     <td>{{row.Number_5}}</td>
                     <td>{{row.Number_6}}</td>
+                    <td><button @click="moveEditLoto6Result(row.Time)">Edit</button></td>
                 </tr>
             </tbody>
         </table>
@@ -64,7 +66,13 @@ export default {
                     // URLを削除
                     window.URL.revokeObjectURL(url)
                 })
-        }
+        },
+        moveEditLoto6Result(time) {
+            this.$router.push({
+                name: 'editLoto6Result',
+                params: { id: time}
+            })
+        } 
     }
 };
 </script>

@@ -13,6 +13,9 @@
       <b-dropdown-item><router-link to="/expectloto7">Expect</router-link></b-dropdown-item>
       <b-dropdown-item><router-link to="/loto7statistics">Statistics</router-link></b-dropdown-item>
     </b-nav-item-dropdown>
+    <b-nav-item-dropdown id="user" text="User" toggle-class="nav-link-custom">
+      <b-dropdown-item><router-link to="/login">Login</router-link></b-dropdown-item>
+    </b-nav-item-dropdown>
   </b-nav>
 </template>
 <script>

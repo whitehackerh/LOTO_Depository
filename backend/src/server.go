@@ -23,6 +23,7 @@ func main() {
 	}))
 
 	// Routing
+	e.POST("/login", controller.Login())
 	e.GET("/getLoto6Results", controller.GetLoto6Results())
 	e.POST("/setLoto6Results", controller.SetLoto6Results())
 	e.POST("/determineLoto6Expectation", controller.DetermineLoto6Expectation())
@@ -31,6 +32,8 @@ func main() {
 	e.GET("/downloadLoto6Statistics", controller.DownloadLoto6Statistics())
 	e.GET("/getLoto6LatelyStatistics", controller.GetLoto6LatelyStatistics())
 	e.GET("/downloadLoto6LatelyStatistics", controller.DownloadLoto6LatelyStatistics())
+	e.POST("/getLoto6ResultDetail", controller.GetLoto6ResultDetail())
+	e.POST("/editLoto6Result", controller.EditLoto6Result())
 	e.GET("/getLoto7Results", controller.GetLoto7Results())
 	e.POST("/setLoto7Results", controller.SetLoto7Results())
 	e.POST("/determineLoto7Expectation", controller.DetermineLoto7Expectation())

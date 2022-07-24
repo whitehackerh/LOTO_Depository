@@ -4,6 +4,7 @@ import Login from '../components/pages/login.vue'
 import Loto6Results from '../components/pages/loto6results.vue'
 import RegisterLoto6Results from '../components/pages/registerloto6results.vue'
 import ExpectLoto6 from '../components/pages/expectloto6.vue'
+import EditLoto6Result from '../components/pages/editLoto6Result.vue'
 import Loto6Statistics from '../components/pages/loto6statistics.vue'
 import Loto7Results from '../components/pages/loto7results.vue'
 import RegisterLoto7Results from '../components/pages/registerloto7results.vue'
@@ -29,7 +30,7 @@ const routes = [
     {
         path: '/registerloto6results',
         name: 'registerloto6results',
-        component: RegisterLoto6Results
+        component: RegisterLoto6Results,
     },
     {
         path: '/expectloto6',
@@ -40,6 +41,11 @@ const routes = [
         path: '/loto6statistics',
         name: 'loto6statistics',
         component: Loto6Statistics
+    },
+    {
+        path: '/editLoto6Result/:id',
+        name: 'editLoto6Result',
+        component: EditLoto6Result,
     },
     {
         path: '/loto7results',
