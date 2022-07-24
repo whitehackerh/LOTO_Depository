@@ -10,6 +10,7 @@ import Loto7Results from '../components/pages/loto7results.vue'
 import RegisterLoto7Results from '../components/pages/registerloto7results.vue'
 import ExpectLoto7 from '../components/pages/expectloto7.vue'
 import Loto7Statistics from '../components/pages/loto7statistics.vue'
+import EditLoto7Result from '../components/pages/editLoto7Result.vue'
 
 const routes = [
     {
@@ -30,7 +31,7 @@ const routes = [
     {
         path: '/registerloto6results',
         name: 'registerloto6results',
-        component: RegisterLoto6Results,
+        component: RegisterLoto6Results
     },
     {
         path: '/expectloto6',
@@ -66,7 +67,12 @@ const routes = [
         path: '/loto7statistics',
         name: 'loto7statistics',
         component: Loto7Statistics
-    }
+    },
+    {
+        path: '/editLoto7Result/:id',
+        name: 'editLoto7Result',
+        component: EditLoto7Result,
+    },
 ]
 
 const router = createRouter({
