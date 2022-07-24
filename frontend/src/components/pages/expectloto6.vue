@@ -49,7 +49,7 @@ export default {
     },
     methods: {
         async determineLoto6Expectation() {
-            const results = await axios.post("determineLoto6Expectation", {body: {time: this.time, input_number_1: this.input_number_1, input_number_2: this.input_number_2, input_number_3: this.input_number_3,
+            const results = await axios.post("/determineLoto6Expectation", {body: {time: this.time, input_number_1: this.input_number_1, input_number_2: this.input_number_2, input_number_3: this.input_number_3,
                  input_number_4: this.input_number_4, input_number_5: this.input_number_5, input_number_6: this.input_number_6}})
             this.infoflag = true
             this.info = results.data[0].Result
