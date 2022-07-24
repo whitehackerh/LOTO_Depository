@@ -30,6 +30,17 @@ type Loto7LatelyResults struct {
 	Number_7 int
 }
 
+type Loto7ResultDetail struct {
+	Time     int
+	Number_1 int
+	Number_2 int
+	Number_3 int
+	Number_4 int
+	Number_5 int
+	Number_6 int
+	Number_7 int
+}
+
 func init() {
 	Db = db.ConnectDb()
 }
@@ -101,4 +112,37 @@ func GetLoto7LatelyStatistics() []*Loto7LatelyResults {
 			Number_4: result.Number_4, Number_5: result.Number_5, Number_6: result.Number_6, Number_7: result.Number_7})
 	}
 	return data
+}
+
+func GetLoto7ResultDetail(time int) []*Loto7ResultDetail {
+	result := Loto7ResultDetail{}
+	data := []*Loto7ResultDetail{}
+	query := `select * from loto7_results where time = $1`
+	rows, err := Db.Query(query, time)
+	if err != nil {
+		panic(err.Error())
+	}
+	defer rows.Close()
+	for rows.Next() {
+		rows.Scan(&result.Time, &result.Number_1, &result.Number_2, &result.Number_3,
+			&result.Number_4, &result.Number_5, &result.Number_6, &result.Number_7)
+		data = append(data, &Loto7ResultDetail{Time: result.Time, Number_1: result.Number_1, Number_2: result.Number_2, Number_3: result.Number_3,
+			Number_4: result.Number_4, Number_5: result.Number_5, Number_6: result.Number_6, Number_7: result.Number_7})
+	}
+	return data
+}
+
+func UpdateLoto7Results(updateLoto7ResultsQuery string, input_data map[string]int, updateStatisticsQuery map[int]string, params map[int]int, time int) bool {
+	_, err := Db.Exec(updateLoto7ResultsQuery, input_data["number_1"], input_data["number_2"], input_data["number_3"], input_data["number_4"], input_data["number_5"], input_data["number_6"], input_data["number_7"], time)
+	if err != nil {
+		return false
+	}
+
+	for i := 0; i < len(updateStatisticsQuery); i++ {
+		_, err := Db.Exec(updateStatisticsQuery[i], params[i], params[i], params[i], params[i])
+		if err != nil {
+			return false
+		}
+	}
+	return true
 }
