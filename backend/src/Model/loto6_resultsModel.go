@@ -37,6 +37,10 @@ type Loto6ResultDetail struct {
 	Number_6 int
 }
 
+type Loto6NewestTime struct {
+	Time int
+}
+
 func init() {
 	Db = db.ConnectDb()
 }
@@ -139,4 +143,21 @@ func UpdateLoto6Results(updateLoto6ResultsQuery string, input_data map[string]in
 		}
 	}
 	return true
+}
+
+func GetNewestLoto6Result() []*Loto6NewestTime {
+	result := Loto6NewestTime{}
+	data := []*Loto6NewestTime{}
+
+	rows, err := Db.Query("SELECT time FROM loto6_results ORDER BY TIME DESC LIMIT 1")
+	if err != nil {
+		panic(err.Error())
+	}
+	defer rows.Close()
+	for rows.Next() {
+		rows.Scan(&result.Time)
+		data = append(data, &Loto6NewestTime{Time: result.Time})
+	}
+	return data
+
 }

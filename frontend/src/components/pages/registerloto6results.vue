@@ -10,7 +10,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><input type="text" v-model="time"></td>
+                    <td>{{time}}</td>
                     <td><input type="text" v-model="input_number_1"></td>
                     <td><input type="text" v-model="input_number_2"></td>
                     <td><input type="text" v-model="input_number_3"></td>
@@ -44,6 +44,9 @@ export default {
             input_number_6: '',
         }
     },
+    mounted() {
+        this.getNewestLoto6Result()
+    },
     methods: {
         async setLoto6Results() {
             await axios.post("/setLoto6Results", {body: {time: this.time, input_number_1: this.input_number_1, input_number_2: this.input_number_2, input_number_3: this.input_number_3,
@@ -52,6 +55,10 @@ export default {
                     // handle success
                     console.log(response);
                 });
+        },
+        async getNewestLoto6Result() {
+            const result = await axios.get("/getNewestLoto6Result");
+            this.time = String(result.data[0].Time)
         }
     }
 };
