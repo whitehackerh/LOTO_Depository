@@ -15,12 +15,25 @@
     </b-nav-item-dropdown>
     <b-nav-item-dropdown id="user" text="User" toggle-class="nav-link-custom">
       <b-dropdown-item><router-link to="/login">Login</router-link></b-dropdown-item>
+      <b-dropdown-item @click="Logout()">Logout</b-dropdown-item>
     </b-nav-item-dropdown>
   </b-nav>
 </template>
 <script>
 export default {
-    name: 'HeaderComponent'
+    name: 'HeaderComponent',
+    methods: {
+      async Logout() {
+        this.$store.dispatch("auth", {
+            user_id: '',
+            user_name:'',
+            mail_address: '',
+            admin_flag: '', 
+            token: '',
+        })
+        this.$router.push('/');
+      }
+    }
 };
 </script>
 <style>
