@@ -1,4 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router'
+import Store from '@/store/index.js'
 import Home from '../components/pages/home.vue'
 import Login from '../components/pages/login.vue'
 import Loto6Results from '../components/pages/loto6results.vue'
@@ -36,7 +37,8 @@ const routes = [
     {
         path: '/expectloto6',
         name: 'expectloto6',
-        component: ExpectLoto6
+        component: ExpectLoto6,
+        meta: { requiresAuth: true }
     },
     {
         path: '/loto6statistics',
@@ -61,7 +63,8 @@ const routes = [
     {
         path: '/expectloto7',
         name: 'expectloto7',
-        component: ExpectLoto7
+        component: ExpectLoto7,
+        meta: { requiresAuth: true }
     },
     {
         path: '/loto7statistics',
@@ -79,5 +82,13 @@ const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes
 })
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth) && !Store.state.token) {
+      next({ path: '/login', query: { redirect: to.fullPath } });
+    } else {
+      next();
+    }
+  });
 
 export default router
