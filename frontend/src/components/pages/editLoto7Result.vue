@@ -32,7 +32,7 @@
             </table>
         </div>
         <br><br>
-        <button  @click="editLoto7Result()">register</button>
+        <button  @click="editLoto7Result()">Register</button>
     </div>
 </template>
 

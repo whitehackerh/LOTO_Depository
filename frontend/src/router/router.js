@@ -12,6 +12,7 @@ import RegisterLoto7Results from '../components/pages/registerloto7results.vue'
 import ExpectLoto7 from '../components/pages/expectloto7.vue'
 import Loto7Statistics from '../components/pages/loto7statistics.vue'
 import EditLoto7Result from '../components/pages/editLoto7Result.vue'
+import UserRegistration from '../components/pages/userRegistration.vue'
 
 const routes = [
     {
@@ -75,6 +76,11 @@ const routes = [
         path: '/editLoto7Result/:id',
         name: 'editLoto7Result',
         component: EditLoto7Result,
+    },
+    {
+        path: '/userRegistration',
+        name: 'userRegistration',
+        component: UserRegistration,
     },
 ]
 

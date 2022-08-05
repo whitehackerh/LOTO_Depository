@@ -46,6 +46,7 @@ func main() {
 	e.POST("/getLoto7ResultDetail", controller.GetLoto7ResultDetail())
 	e.POST("/editLoto7Result", controller.EditLoto7Result())
 	e.GET("/getNewestLoto7Result", controller.GetNewestLoto7Result())
+	e.POST("/createUser", controller.CreateUser())
 
 	e.Logger.Fatal(e.Start(":8000"))
 }

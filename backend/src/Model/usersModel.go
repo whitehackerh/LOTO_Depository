@@ -9,14 +9,14 @@ type User struct {
 	Delete_flag  int
 }
 
-// func CreateUser(input_data []string) bool {
-// 	query := `INSERT INTO users Values(user_id, user_name, password, mail_address, admin_flag, delete_flag) Values ($1, $2, $3, $4, $5, $6);`
-// 	_, err := Db.Exec(query, input_data["user_id"], input_data["user_name"], input_data["password"], input_data["mail_address"], input_data["admin_flag"], input_data["delete_flag"])
-// 	if err != nil {
-// 		return false
-// 	}
-// 	return true
-// }
+func CreateUser(input_data map[string]string) bool {
+	query := `INSERT INTO users(user_name, password, mail_address, admin_flag, delete_flag) VALUES ('` + input_data["user_name"] + `', pgp_sym_encrypt('` + input_data["password"] + `', get_passwd()), pgp_sym_encrypt('` + input_data["mail_address"] + `', get_passwd()), 0, 0);`
+	_, err := Db.Exec(query)
+	if err != nil {
+		return false
+	}
+	return true
+}
 
 func GetUser(input_data string) []*User {
 	user := User{}
