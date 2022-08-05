@@ -225,5 +225,12 @@ export default {
 }
 p {
     float: left;
+    color: white;
+}
+#AllTime {
+    color: white;
+}
+h3 {
+    color: white;
 }
 </style>

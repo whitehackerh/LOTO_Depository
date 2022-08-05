@@ -7,6 +7,9 @@
     <div>
         <button @click="Login()">Login</button>
     </div>
+    <div class="RegisterUser">
+        <router-link to ="/userregistration">Register Now</router-link>
+    </div>
 </template>
 
 <script>

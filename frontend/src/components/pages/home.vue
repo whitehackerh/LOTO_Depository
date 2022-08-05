@@ -1,8 +1,6 @@
 <template>
     <div id="app">
         <HeaderComponent />
-        <h2>テストページ1</h2>
-        <router-link to="/login">次のページ</router-link>
     </div>
 </template>
 
@@ -17,11 +15,17 @@ export default {
 </script>
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Century Gothic", Helvetica, Arial, sans-serif;
+  font-weight:800; 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  /*background-color: #004CFF;*/
   /* margin-top: 60px; */
+}
+body {
+    background-image: url("~@/assets/images/earth.jpg");
+  background-repeat: repeat;
 }
 </style>

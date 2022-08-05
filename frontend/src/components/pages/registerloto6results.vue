@@ -22,7 +22,7 @@
         </table>
     </div>
     <br><br>
-    <button @click="setLoto6Results()">register</button>
+    <button @click="setLoto6Results()">Register</button>
 </template>
 
 <script>

@@ -30,7 +30,7 @@
             </table>
         </div>
         <br><br>
-        <button  @click="editLoto6Result()">register</button>
+        <button  @click="editLoto6Result()">Register</button>
     </div>
 </template>
 
@@ -84,5 +84,8 @@ export default {
 .editTable td {
     border: 1px solid #000066;
     background: #ffffff;
+}
+h3 {
+    color: white;
 }
 </style>
