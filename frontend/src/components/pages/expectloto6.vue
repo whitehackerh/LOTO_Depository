@@ -1,5 +1,8 @@
 <template>
     <HeaderComponent />
+    <div class="addRow">
+        <button @click="addRow()">Add Row</button>
+    </div>
     <div class="inputTable">
         <table>
             <thead>
@@ -10,20 +13,22 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><input type="text" v-model="time"></td>
-                    <td><input type="text" v-model="input_number_1"></td>
-                    <td><input type="text" v-model="input_number_2"></td>
-                    <td><input type="text" v-model="input_number_3"></td>
-                    <td><input type="text" v-model="input_number_4"></td>
-                    <td><input type="text" v-model="input_number_5"></td>
-                    <td><input type="text" v-model="input_number_6"></td>
-                    <td><button @click="(determineLoto6Expectation())">Check</button></td>
-                    <td><div v-show="infoflag">{{info}}</div></td>
+                <tr v-for="(expectation, index) in expectations" :key="index">
+                    <td><input type="text" v-model="expectations[index].time"></td>
+                    <td><input type="text" v-model="expectations[index].input_number_1"></td>
+                    <td><input type="text" v-model="expectations[index].input_number_2"></td>
+                    <td><input type="text" v-model="expectations[index].input_number_3"></td>
+                    <td><input type="text" v-model="expectations[index].input_number_4"></td>
+                    <td><input type="text" v-model="expectations[index].input_number_5"></td>
+                    <td><input type="text" v-model="expectations[index].input_number_6"></td>
+                    <td><button @click="(determineLoto6Expectation(index))">Check</button></td>
+                    <td><div v-show="expectations[index].infoflag=='1'">{{expectations[index].info}}</div></td>
                 </tr>
             </tbody>
         </table>
     </div>
+    <br><br>
+    <button @click="setLoto6Expectations()">Register</button>
 </template>
 
 <script>
@@ -36,23 +41,44 @@ export default {
     },
     data() {
         return {
-            time: '',
-            input_number_1: '',
-            input_number_2: '',
-            input_number_3: '',
-            input_number_4: '',
-            input_number_5: '',
-            input_number_6: '',
-            info: '',
-            infoflag: false
+            expectations: [{
+                time: '',
+                input_number_1: '',
+                input_number_2: '',
+                input_number_3: '',
+                input_number_4: '',
+                input_number_5: '',
+                input_number_6: '',
+                info: '',
+                infoflag: '2'
+            }]
         }
     },
     methods: {
-        async determineLoto6Expectation() {
-            const results = await axios.post("/determineLoto6Expectation", {body: {time: this.time, input_number_1: this.input_number_1, input_number_2: this.input_number_2, input_number_3: this.input_number_3,
-                 input_number_4: this.input_number_4, input_number_5: this.input_number_5, input_number_6: this.input_number_6}})
-            this.infoflag = true
-            this.info = results.data[0].Result
+        async determineLoto6Expectation(index) {
+            const results = await axios.post("/determineLoto6Expectation", {body: {time: this.expectations[index].time, input_number_1: this.expectations[index].input_number_1, input_number_2: this.expectations[index].input_number_2, input_number_3: this.expectations[index].input_number_3,
+                 input_number_4: this.expectations[index].input_number_4, input_number_5: this.expectations[index].input_number_5, input_number_6: this.expectations[index].input_number_6}})
+            this.expectations[index].infoflag = '1'
+            this.expectations[index].info = results.data[0].Result
+        },
+        addRow() {
+            this.expectations.push({
+                time: '',
+                input_number_1: '',
+                input_number_2: '',
+                input_number_3: '',
+                input_number_4: '',
+                input_number_5: '',
+                input_number_6: '',
+                info: '',
+                infoflag: '2'
+            })
+        },
+        async setLoto6Expectations() {
+            await axios.post("/setLoto6Expectations", {body: {user_id: this.$store.getters.getUserId, expectations: this.expectations}})
+            .then(function(response) {
+                console.log(response);
+            })
         }
     }
 }
@@ -69,5 +95,8 @@ export default {
 .inputTable td {
     border: 1px solid #000066;
     background: #ffffff;
+}
+.addRow {
+    text-align: left;
 }
 </style>
