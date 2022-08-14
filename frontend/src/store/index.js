@@ -26,8 +26,8 @@ const store = new Vuex.Store({
     },
     modules: {},
     getters: {
-        getToken(state) {
-            return state.token
+        getUserId: state => {
+            return state.user_id
         }
     }
 })
