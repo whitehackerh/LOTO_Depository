@@ -10,7 +10,7 @@ type DetermineLoto6Response struct {
 	Result string
 }
 
-func DetermineLoto6Expectation(body map[string]string) []*DetermineLoto6Response {
+func DetermineLoto6Prediction(body map[string]string) []*DetermineLoto6Response {
 	param := body
 	input_data := make(map[string]int)
 	input_data["time"], _ = strconv.Atoi(param["time"])

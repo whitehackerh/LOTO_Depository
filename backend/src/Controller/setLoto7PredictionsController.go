@@ -8,13 +8,13 @@ import (
 	"github.com/labstack/echo"
 )
 
-func SetLoto6Expectations() echo.HandlerFunc {
+func SetLoto7Predictions() echo.HandlerFunc {
 	return func(c echo.Context) error {
-		stashParam := &stash.RegisterLoto6Expectations{}
+		stashParam := &stash.RegisterLoto7Predictions{}
 		if err := c.Bind(stashParam); err != nil {
 			return err
 		}
-		result := service.SetLoto6Expectations(stashParam)
+		result := service.SetLoto7Predictions(stashParam)
 		return c.JSON(http.StatusCreated, result)
 	}
 }
