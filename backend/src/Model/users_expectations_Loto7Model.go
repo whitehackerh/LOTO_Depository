@@ -1,8 +1,23 @@
 package Model
 
 import (
+	"fmt"
+
 	db "../DB"
 )
+
+type Loto7UsersPredictions struct {
+	User_Id  int
+	Time     int
+	Time_Id  int
+	Number_1 int
+	Number_2 int
+	Number_3 int
+	Number_4 int
+	Number_5 int
+	Number_6 int
+	Number_7 int
+}
 
 func init() {
 	Db = db.ConnectDb()
@@ -17,4 +32,30 @@ func SetLoto7Predictions(input_data map[int]map[string]int, user_id int) bool {
 		}
 	}
 	return true
+}
+
+func GetLoto7UsersPredictions(user_id int) []*Loto7UsersPredictions {
+	prediction := Loto7UsersPredictions{}
+	predictions := []*Loto7UsersPredictions{}
+	var count int
+	error := Db.QueryRow(`SELECT COUNT(*) FROM users_expectations_loto7 WHERE user_id = $1`, user_id).Scan(&count)
+	fmt.Println(error)
+	if count == 0 {
+		prediction1 := Loto7UsersPredictions{Time: 0}
+		predictions = append(predictions, &prediction1)
+		return predictions
+	}
+	query := `SELECT * FROM users_expectations_loto7 WHERE user_id = $1 ORDER BY time DESC, time_id ASC`
+	rows, err := Db.Query(query, user_id)
+	if err != nil {
+		panic(err.Error())
+	}
+	defer rows.Close()
+	for rows.Next() {
+		rows.Scan(&prediction.User_Id, &prediction.Time, &prediction.Time_Id, &prediction.Number_1, &prediction.Number_2,
+			&prediction.Number_3, &prediction.Number_4, &prediction.Number_5, &prediction.Number_6, &prediction.Number_7)
+		predictions = append(predictions, &Loto7UsersPredictions{User_Id: prediction.User_Id, Time: prediction.Time, Time_Id: prediction.Time_Id, Number_1: prediction.Number_1, Number_2: prediction.Number_2,
+			Number_3: prediction.Number_3, Number_4: prediction.Number_4, Number_5: prediction.Number_5, Number_6: prediction.Number_6, Number_7: prediction.Number_7})
+	}
+	return predictions
 }
