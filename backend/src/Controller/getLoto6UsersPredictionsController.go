@@ -7,17 +7,17 @@ import (
 	"github.com/labstack/echo"
 )
 
-type DetermineLoto6Param struct {
+type Loto6PredictionsUserId struct {
 	Body map[string]string `json:"body"`
 }
 
-func DetermineLoto6Expectation() echo.HandlerFunc {
+func GetLoto6UsersPredictions() echo.HandlerFunc {
 	return func(c echo.Context) error {
-		param := new(DetermineLoto6Param)
+		param := new(Loto6PredictionsUserId)
 		if err := c.Bind(param); err != nil {
 			return err
 		}
-		result := service.DetermineLoto6Expectation(param.Body)
-		return c.JSON(http.StatusCreated, result)
+		data := service.GetLoto6UsersPredictions(param.Body)
+		return c.JSON(http.StatusOK, data)
 	}
 }

@@ -4,12 +4,13 @@ import Home from '../components/pages/home.vue'
 import Login from '../components/pages/login.vue'
 import Loto6Results from '../components/pages/loto6results.vue'
 import RegisterLoto6Results from '../components/pages/registerloto6results.vue'
-import ExpectLoto6 from '../components/pages/expectloto6.vue'
+import PredictLoto6 from '../components/pages/predictloto6.vue'
 import EditLoto6Result from '../components/pages/editLoto6Result.vue'
 import Loto6Statistics from '../components/pages/loto6statistics.vue'
+import UsersPredictionsLoto6 from '../components/pages/usersPredictionsLoto6.vue'
 import Loto7Results from '../components/pages/loto7results.vue'
 import RegisterLoto7Results from '../components/pages/registerloto7results.vue'
-import ExpectLoto7 from '../components/pages/expectloto7.vue'
+import PredictLoto7 from '../components/pages/predictloto7.vue'
 import Loto7Statistics from '../components/pages/loto7statistics.vue'
 import EditLoto7Result from '../components/pages/editLoto7Result.vue'
 import UserRegistration from '../components/pages/userRegistration.vue'
@@ -36,9 +37,9 @@ const routes = [
         component: RegisterLoto6Results
     },
     {
-        path: '/expectloto6',
-        name: 'expectloto6',
-        component: ExpectLoto6,
+        path: '/predictloto6',
+        name: 'predictloto6',
+        component: PredictLoto6,
         meta: { requiresAuth: true }
     },
     {
@@ -52,6 +53,12 @@ const routes = [
         component: EditLoto6Result,
     },
     {
+        path: '/usersPredictionsLoto6/:id',
+        name: 'usersPredictionsLoto6',
+        component: UsersPredictionsLoto6,
+        meta: { requiresAuth: true },
+    },
+    {
         path: '/loto7results',
         name: 'loto7results',
         component: Loto7Results
@@ -62,9 +69,9 @@ const routes = [
         component: RegisterLoto7Results
     },
     {
-        path: '/expectloto7',
-        name: 'expectloto7',
-        component: ExpectLoto7,
+        path: '/predictloto7',
+        name: 'predictloto7',
+        component: PredictLoto7,
         meta: { requiresAuth: true }
     },
     {
