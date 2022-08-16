@@ -10,12 +10,11 @@
                     <th id="time">Time</th>
                     <th colspan="6">Numbers</th>
                     <th id="match">Matches</th>
-                    <th>Edit</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="row in predictions"  :key="row.Time">
-                    <td>{{row.Time}}</td>
+                    <td @click="movePredictionsDetailLoto6(row.Time)">{{row.Time}}</td>
                     <td>{{row.Number_1}}</td>
                     <td>{{row.Number_2}}</td>
                     <td>{{row.Number_3}}</td>
@@ -23,7 +22,6 @@
                     <td>{{row.Number_5}}</td>
                     <td>{{row.Number_6}}</td>
                     <td>{{row.Matches}}</td>
-                    <td><button>Edit</button></td>
                 </tr>
             </tbody>
         </table>
@@ -60,6 +58,12 @@ export default {
         async getLoto6UsersPredicitions() {
             const predictions = await axios.post("/getLoto6UsersPredictions", {body: {user_id: this.$store.getters.getUserId}});
             this.predictions = predictions.data
+        },
+        movePredictionsLoto6(time) {
+            this.$router.push({
+                name: 'usersPredictionsDetailLoto6',
+                params: { id: this.$store.getters.getUserId, time: time}
+            })
         }
     }
 }
