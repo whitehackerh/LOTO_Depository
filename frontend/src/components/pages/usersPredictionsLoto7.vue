@@ -2,6 +2,7 @@
     <div>
     <HeaderComponent />
     <div class="usersPredictionsTable" v-show="predictions[0].Time!=0">
+        <h3 id="Records">Records : {{predictions[0].Records}}</h3>
         <h3 id="Average">Average : {{Math.floor(predictions[0].Average * 1000) / 1000}}</h3>
         <h3 id="Rate">Rate : {{Math.floor(predictions[0].Rate * 1000) / 1000}}%</h3><br>
         <table v-show="predictions[0].Time!=0">
@@ -14,7 +15,7 @@
             </thead>
             <tbody>
                 <tr v-for="row in predictions"  :key="row.Time">
-                    <td @click="movePredictionsDetailLoto7(row.Time)">{{row.Time}}</td>
+                    <td id="LinkToDetail" @click="movePredictionsDetailLoto7(row.Time)">{{row.Time}}</td>
                     <td>{{row.Number_1}}</td>
                     <td>{{row.Number_2}}</td>
                     <td>{{row.Number_3}}</td>
@@ -60,7 +61,7 @@ export default {
             const predictions = await axios.post("/getLoto7UsersPredictions", {body: {user_id: this.$store.getters.getUserId}});
             this.predictions = predictions.data
         },
-        movePredictionsLoto7(time) {
+        movePredictionsDetailLoto7(time) {
             this.$router.push({
                 name: 'usersPredictionsDetailLoto7',
                 params: { id: this.$store.getters.getUserId, time: time}
@@ -81,5 +82,9 @@ export default {
 .usersPredictionsTable td {
     border: 1px solid #000066;
     background: #ffffff;
+}
+#LinkToDetail {
+    color: blue;
+    text-decoration: underline;
 }
 </style>
