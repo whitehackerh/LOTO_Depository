@@ -12,7 +12,7 @@ func GetLoto6UsersPredictions(body map[string]string) map[int]map[string]interfa
 	results := model.GetLoto6Results()
 
 	data := make(map[int]map[string]interface{})
-	if results[0].Time == 0 {
+	if records[0].Time == 0 {
 		data[0] = make(map[string]interface{})
 		data[0]["Total"] = 0
 		data[0]["Rate"] = 0.0
@@ -189,6 +189,7 @@ func GetLoto6UsersPredictions(body map[string]string) map[int]map[string]interfa
 		counter2++
 	}
 	data[0]["Total"] = total
+	data[0]["Records"] = len(data)
 	data[0]["Average"] = float64(total) / float64(len(data))
 	data[0]["Rate"] = float64(total) / (float64(len(data)) * 6) * 100
 

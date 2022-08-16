@@ -59,3 +59,29 @@ func GetLoto6UsersPredictions(user_id int) []*Loto6UsersPredictions {
 	}
 	return predictions
 }
+
+func GetLoto6UsersPredictionsDetail(user_id, time int) []*Loto6UsersPredictions {
+	prediction := Loto6UsersPredictions{}
+	predictions := []*Loto6UsersPredictions{}
+	var count int
+	error := Db.QueryRow(`SELECT COUNT(*) FROM users_expectations_loto6 WHERE user_id = $1 AND time = $2`, user_id, time).Scan(&count)
+	fmt.Println(error)
+	if count == 0 {
+		prediction1 := Loto6UsersPredictions{Time: 0}
+		predictions = append(predictions, &prediction1)
+		return predictions
+	}
+	query := `SELECT * FROM users_expectations_loto6 WHERE user_id = $1 AND time = $2 ORDER BY time DESC, time_id ASC`
+	rows, err := Db.Query(query, user_id, time)
+	if err != nil {
+		panic(err.Error())
+	}
+	defer rows.Close()
+	for rows.Next() {
+		rows.Scan(&prediction.User_Id, &prediction.Time, &prediction.Time_Id, &prediction.Number_1, &prediction.Number_2,
+			&prediction.Number_3, &prediction.Number_4, &prediction.Number_5, &prediction.Number_6)
+		predictions = append(predictions, &Loto6UsersPredictions{User_Id: prediction.User_Id, Time: prediction.Time, Time_Id: prediction.Time_Id, Number_1: prediction.Number_1, Number_2: prediction.Number_2,
+			Number_3: prediction.Number_3, Number_4: prediction.Number_4, Number_5: prediction.Number_5, Number_6: prediction.Number_6})
+	}
+	return predictions
+}
