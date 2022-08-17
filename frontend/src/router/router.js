@@ -15,6 +15,7 @@ import PredictLoto7 from '../components/pages/predictloto7.vue'
 import Loto7Statistics from '../components/pages/loto7statistics.vue'
 import EditLoto7Result from '../components/pages/editLoto7Result.vue'
 import UsersPredictionsLoto7 from '../components/pages/usersPredictionsLoto7.vue'
+import UsersPredictionsDetailLoto7 from '../components/pages/usersPredictionsDetailLoto7.vue'
 import UserRegistration from '../components/pages/userRegistration.vue'
 
 const routes = [
@@ -96,6 +97,12 @@ const routes = [
         path: '/usersPredictionsLoto7/:id',
         name: 'usersPredictionsLoto7',
         component: UsersPredictionsLoto7,
+        meta: { requiresAuth: true },
+    },
+    {
+        path: '/usersPredictionsDetailLoto7/:id/:time',
+        name: 'usersPredictionsDetailLoto7',
+        component: UsersPredictionsDetailLoto7,
         meta: { requiresAuth: true },
     },
     {
