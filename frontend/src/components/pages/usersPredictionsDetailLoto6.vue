@@ -3,7 +3,7 @@
         <HeaderComponent />
         <h3>Time : {{this.$route.params.time}}</h3>
         <div class="resultTable">
-            <table>
+            <table v-show="predictions[0].beforeResultAnnouncement==false">
                 <thead>
                     <tr>
                         <th colspan="6">Numbers</th>
@@ -20,18 +20,19 @@
                     </tr>
                 </tbody>
             </table>
+            <h3 v-show="predictions[0].beforeResultAnnouncement==true">This Time is before the results are announced.</h3>
         </div>
         <br><br>
-        <h3 id="Records">Records : {{predictions[0].Records}}</h3>
-        <h3 id="Average">Average : {{Math.floor(predictions[0].Average * 1000) / 1000}}</h3>
-        <h3 id="Rate">Rate : {{Math.floor(predictions[0].Rate * 1000) / 1000}}%</h3><br>
-        <div class="predictionsTable">
+        <div class="predictionsTable" v-show="predictions[0].Time!=0">
+            <h3 id="Records">Records : {{predictions[0].Records}}</h3>
+            <h3 id="Average" v-show="predictions[0].beforeResultAnnouncement==false">Average : {{Math.floor(predictions[0].Average * 1000) / 1000}}</h3>
+            <h3 id="Rate" v-show="predictions[0].beforeResultAnnouncement==false">Rate : {{Math.floor(predictions[0].Rate * 1000) / 1000}}%</h3><br>
             <table>
                 <thead>
                     <tr>
                         <th><input type="checkbox" @click="allSelect()" v-model="allSelected"></th>
                         <th colspan="6">Numbers</th>
-                        <th>Matches</th>
+                        <th v-show="predictions[0].beforeResultAnnouncement==false">Matches</th>
                         <th>Edit</th>
                         <th>Register</th>
                         <th>Delete</th>
@@ -46,13 +47,16 @@
                         <td>{{prediction.Number_4}}</td>
                         <td>{{prediction.Number_5}}</td>
                         <td>{{prediction.Number_6}}</td>
-                        <td>{{prediction.Matches}}</td>
+                        <td v-show="predictions[0].beforeResultAnnouncement==false">{{prediction.Matches}}</td>
                         <td><button @click="edit()">Edit</button></td>
                         <td><button @click="editLoto6UsersPrediction(prediction.Time_Id)">Register</button></td>
                         <td><button @click="deleteLoto6UsersPrediction(prediction.Time_Id)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div>
+            <h3 v-show="predictions[0].Time==0 && predictions[0].beforeResultAnnouncement == true">No Data</h3>
         </div>
     </div>
 </template>
