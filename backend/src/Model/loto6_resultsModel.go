@@ -159,5 +159,4 @@ func GetNewestLoto6Result() []*Loto6NewestTime {
 		data = append(data, &Loto6NewestTime{Time: result.Time})
 	}
 	return data
-
 }
