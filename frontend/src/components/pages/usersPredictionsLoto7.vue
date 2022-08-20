@@ -12,7 +12,7 @@
             </thead>
             <tbody>
                 <tr v-for="row in predictions" v-show="row.beforeResultAnnouncement==true" :key="row.Time">
-                    <td id="LinkToDetail" @click="movePredictionsDetailLoto6(row.Time)">{{row.Time}}</td>
+                    <td id="LinkToDetail" @click="movePredictionsDetailLoto7(row.Time)">{{row.Time}}</td>
                     <td>{{row.Number_1}}</td>
                     <td>{{row.Number_2}}</td>
                     <td>{{row.Number_3}}</td>
@@ -37,7 +37,7 @@
                 </tr>
             </thead>
             <tbody>
-                                <tr v-for="row in predictions" v-show="row.beforeResultAnnouncement==false" :key="row.Time">
+                <tr v-for="row in predictions" v-show="row.beforeResultAnnouncement==false" :key="row.Time">
                     <td id="LinkToDetail" @click="movePredictionsDetailLoto7(row.Time)">{{row.Time}}</td>
                     <td>{{row.Number_1}}</td>
                     <td>{{row.Number_2}}</td>

@@ -10,11 +10,21 @@ func GetLoto7UsersPredictionsDetail(body map[string]string) map[string]map[int]m
 	user_id, _ := strconv.Atoi(body["user_id"])
 	time, _ := strconv.Atoi(body["time"])
 	records := model.GetLoto7UsersPredictionsDetail(user_id, time)
-	results := model.GetLoto7ResultDetail(time)
+	latestResult := model.GetNewestLoto7Result()
 
 	data := make(map[string]map[int]map[string]interface{})
 	data["Result"] = make(map[int]map[string]interface{})
 	data["Result"][0] = make(map[string]interface{})
+	results := []*model.Loto7ResultDetail{}
+
+	beforeResultAnnouncement := false
+
+	if time <= latestResult[0].Time {
+		results = model.GetLoto7ResultDetail(time)
+	} else {
+		results = append(results, &model.Loto7ResultDetail{Time: 0, Number_1: 0, Number_2: 0, Number_3: 0, Number_4: 0, Number_5: 0, Number_6: 0, Number_7: 0})
+		beforeResultAnnouncement = true
+	}
 	data["Result"][0]["Time"] = results[0].Time
 	data["Result"][0]["Number_1"] = results[0].Number_1
 	data["Result"][0]["Number_2"] = results[0].Number_2
@@ -30,6 +40,7 @@ func GetLoto7UsersPredictionsDetail(body map[string]string) map[string]map[int]m
 		data["Predictions"][0]["Rate"] = 0.0
 		data["Predictions"][0]["Average"] = 0.0
 		data["Predictions"][0]["Time"] = 0
+		data["Predictions"][0]["beforeResultAnnouncement"] = beforeResultAnnouncement
 		return data
 	}
 
@@ -45,6 +56,15 @@ func GetLoto7UsersPredictionsDetail(body map[string]string) map[string]map[int]m
 		data["Predictions"][index]["Number_5"] = value.Number_5
 		data["Predictions"][index]["Number_6"] = value.Number_6
 		data["Predictions"][index]["Number_7"] = value.Number_7
+	}
+
+	if beforeResultAnnouncement == true {
+		data["Predictions"][0]["Total"] = 0
+		data["Predictions"][0]["Records"] = len(data["Predictions"])
+		data["Predictions"][0]["Average"] = 0
+		data["Predictions"][0]["Rate"] = 0
+		data["Predictions"][0]["beforeResultAnnouncement"] = true
+		return data
 	}
 
 	total := 0
@@ -251,6 +271,6 @@ func GetLoto7UsersPredictionsDetail(body map[string]string) map[string]map[int]m
 	data["Predictions"][0]["Records"] = len(data["Predictions"])
 	data["Predictions"][0]["Average"] = float64(total) / float64(len(data["Predictions"]))
 	data["Predictions"][0]["Rate"] = float64(total) / (float64(len(data["Predictions"])) * 7) * 100
-
+	data["Predictions"][0]["beforeResultAnnouncement"] = false
 	return data
 }
