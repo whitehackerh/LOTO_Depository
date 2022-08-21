@@ -16,6 +16,7 @@ func GetLoto6UsersPredictions(body map[string]string) map[int]map[string]interfa
 	data := make(map[int]map[string]interface{})
 	if records[0].Time == 0 {
 		data[0] = make(map[string]interface{})
+		data[0]["Records"] = 0
 		data[0]["Total"] = 0
 		data[0]["Rate"] = 0.0
 		data[0]["Average"] = 0.0
