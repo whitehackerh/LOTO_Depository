@@ -1,6 +1,6 @@
 <template #header>
   <b-nav tabs>
-    <b-nav-item><router-link to="/"><img id="logo" src="../../assets/images/toplogo.png"></router-link></b-nav-item>
+    <b-nav-item><router-link to="/"><img id="logo" src="../../assets/images/toplogo_w_trans.png"></router-link></b-nav-item>
     <b-nav-item-dropdown id="loto6list" text="LOTO6" toggle-class="nav-link-custom">
       <b-dropdown-item><router-link to="/loto6results">Result</router-link></b-dropdown-item>
       <b-dropdown-item><router-link to="/loto6statistics">Statistics</router-link></b-dropdown-item>
@@ -41,6 +41,8 @@ export default {
 <style>
   #header {
     position: sticky;
+    background: white;
+    opacity: 0.3;
   }
   #logo {
     width: auto;
