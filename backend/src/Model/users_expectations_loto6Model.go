@@ -85,3 +85,14 @@ func GetLoto6UsersPredictionsDetail(user_id, time int) []*Loto6UsersPredictions 
 	}
 	return predictions
 }
+
+func EditLoto6UsersPredictionsDetail(input_data map[int]map[string]int, user_id int) bool {
+	query := `UPDATE users_expectations_loto6 SET number_1 = $1, number_2 = $2, number_3 = $3, number_4 = $4, number_5 = $5, number_6 = $6 WHERE user_id = $7 AND time = $8 AND time_id = $9`
+	for i := 0; i < len(input_data); i++ {
+		_, err := Db.Exec(query, input_data[i]["input_number_1"], input_data[i]["input_number_2"], input_data[i]["input_number_3"], input_data[i]["input_number_4"], input_data[i]["input_number_5"], input_data[i]["input_number_6"], user_id, input_data[i]["time"], input_data[i]["time_id"])
+		if err != nil {
+			return false
+		}
+	}
+	return true
+}

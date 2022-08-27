@@ -38,6 +38,7 @@ func main() {
 	e.POST("/setLoto6Predictions", controller.SetLoto6Predictions())
 	e.POST("/getLoto6UsersPredictions", controller.GetLoto6UsersPredictions())
 	e.POST("/getLoto6UsersPredictionsDetail", controller.GetLoto6UsersPredictionsDetail())
+	e.POST("/editLoto6UsersPredictionsDetail", controller.EditLoto6UsersPredictionsDetail())
 	e.GET("/getLoto7Results", controller.GetLoto7Results())
 	e.POST("/setLoto7Results", controller.SetLoto7Results())
 	e.POST("/determineLoto7Prediction", controller.DetermineLoto7Prediction())
