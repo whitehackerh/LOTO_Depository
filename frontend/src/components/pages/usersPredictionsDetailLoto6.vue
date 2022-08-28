@@ -177,10 +177,7 @@ export default {
                     parameter.push(this.predictions[i]);
                 }
             }
-            await axios.post("/editLoto6UsersPredictionsDetail", {body: {user_id: this.$store.getters.getUserId, predictions: parameter}})
-                .then(function (response) {
-                    console.log(response);
-                });
+            await axios.post("/editLoto6UsersPredictionsDetail", {body: {user_id: this.$store.getters.getUserId, predictions: parameter}});
         }
     }
 }
