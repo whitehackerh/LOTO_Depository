@@ -96,3 +96,14 @@ func EditLoto6UsersPredictionsDetail(input_data map[int]map[string]int, user_id 
 	}
 	return true
 }
+
+func DeleteLoto6UsersPredictionsDetail(delete_data map[int]map[string]int, user_id int) bool {
+	query := `DELETE FROM users_expectations_loto6 WHERE user_id = $1 AND time = $2 AND time_id = $3`
+	for i := 0; i < len(delete_data); i++ {
+		_, err := Db.Exec(query, user_id, delete_data[i]["time"], delete_data[i]["time_id"])
+		if err != nil {
+			return false
+		}
+	}
+	return true
+}
