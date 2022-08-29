@@ -1,7 +1,7 @@
 package main
 
 import (
-	controller "./Controller"
+	controller "./Controllers"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	echomw "github.com/labstack/echo/middleware"
