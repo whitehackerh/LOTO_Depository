@@ -130,7 +130,6 @@ export default {
                 document.body.appendChild(link)
                 link.click()
                 window.URL.revokeObjectURL(url)
-
             })
         },
         convertResults() {

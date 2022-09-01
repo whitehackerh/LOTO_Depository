@@ -1,7 +1,8 @@
 <template>
     <div>
     <HeaderComponent />
-    <div class="beforeResultAnnouncementTable" v-show="predictions[0].Time!=0 && predictions[0].existBeforeResultAnnouncement==true">
+    <button id="buttonDownloadLoto6UsersPredictions" v-show="predictions[0].existBeforeResultAnnouncement==true || predictions[0].existAfterResultAnnouncement == true" @click="downloadLoto6UsersPredictions()">Download CSV</button><br><br>
+    <div class="beforeResultAnnouncementTable" v-show="predictions[0].existBeforeResultAnnouncement==true">
         <h3>Before Result Announcement</h3>
         <table>
             <thead>
@@ -23,7 +24,7 @@
             </tbody>
         </table>
     </div>
-    <div class="usersPredictionsTable" v-show="predictions[0].Time!=0">
+    <div class="usersPredictionsTable" v-show="predictions[0].existAfterResultAnnouncement == true">
         <h3 id="Records">Records : {{predictions[0].Records}}</h3>
         <h3 id="Average">Average : {{Math.floor(predictions[0].Average * 1000) / 1000}}</h3>
         <h3 id="Rate">Rate : {{Math.floor(predictions[0].Rate * 1000) / 1000}}%</h3><br>
@@ -88,6 +89,19 @@ export default {
                 params: { id: this.$store.getters.getUserId, time: time}
             })
         },
+        async downloadLoto6UsersPredictions() {
+            axios.post("/downloadLoto6UsersPredictions", {body: {user_id: this.$store.getters.getUserId}}, { responseType: 'blob'})
+            .then((res) => {
+                const bom = new Uint8Array([0xef, 0xbb, 0xbf]);
+                const url = window.URL.createObjectURL(new Blob([bom, res.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'Loto6Predictions.csv');
+                document.body.appendChild(link);
+                link.click();
+                window.URL.revokeObjectURL(url);
+            });
+        }
     }
 }
 </script>
