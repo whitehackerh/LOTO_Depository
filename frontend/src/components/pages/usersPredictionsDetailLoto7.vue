@@ -1,6 +1,7 @@
 <template>
     <div>
         <HeaderComponent />
+        <button v-show="predictions[0].Time!=0 || predicitons[0].beforeResultAnnouncement == false" @click="downloadLoto7UsersPredictionsDetail()">Download CSV</button><br><br>
         <h3>Time : {{this.$route.params.time}}</h3>
         <div class="resultTable">
             <table v-show="predictions[0].beforeResultAnnouncement==false">
@@ -209,6 +210,19 @@ export default {
                 }
             }
             await axios.post("/deleteLoto7UsersPredictionsDetail", {body: {user_id: this.$store.getters.getUserId, predictions: parameter}});
+        },
+        async downloadLoto7UsersPredictionsDetail() {
+            axios.post("/downloadLoto7UsersPredictionsDetail", {body: {user_id: this.$store.getters.getUserId, time: this.$route.params.time}})
+                .then((res) => {
+                    const bom = new Uint8Array([0xef, 0xbb, 0xbf]);
+                    const url = window.URL.createObjectURL(new Blob([bom, res.data]));
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.setAttribute('download', 'Loto7PredictionsDetail.csv');
+                    document.body.appendChild(link);
+                    link.click();
+                    window.URL.revokeObjectURL(url);
+                });
         }
     }
 }

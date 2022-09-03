@@ -8,3 +8,4 @@ backend/src/server.exe
 backend/src/Loto6Predictions.csv
 backend/src/Loto7Predictions.csv
 backend/src/Loto6PredictionsDetail.csv
+backend/src/Loto7PredictionsDetail.csv
