@@ -59,6 +59,7 @@ func main() {
 	e.POST("/editLoto7UsersPredictionsDetail", controller.EditLoto7UsersPredictionsDetail())
 	e.POST("/deleteLoto7UsersPredictionsDetail", controller.DeleteLoto7UsersPredictionsDetail())
 	e.POST("/downloadLoto7UsersPredictions", controller.DownloadLoto7UsersPredictions())
+	e.POST("/downloadLoto7UsersPredictionsDetail", controller.DownloadLoto7UsersPredictionsDetail())
 	e.POST("/createUser", controller.CreateUser())
 
 	e.Logger.Fatal(e.Start(":8000"))
