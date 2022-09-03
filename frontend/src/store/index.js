@@ -28,6 +28,9 @@ const store = new Vuex.Store({
     getters: {
         getUserId: state => {
             return state.user_id
+        },
+        getAuthority: state => {
+            return state.admin_flag
         }
     }
 })
