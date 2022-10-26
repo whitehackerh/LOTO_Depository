@@ -24,7 +24,7 @@ func init() {
 func GetLoto6Statistics() []*Loto6Statistics {
 	statistics := Loto6Statistics{}
 	data := []*Loto6Statistics{}
-	rows, err := Db.Query("SELECT RANK() OVER(ORDER BY count DESC) AS Rank, Number, Count, Rate, Time FROM loto6_statistics ORDER BY count DESC")
+	rows, err := Db.Query("SELECT RANK() OVER(ORDER BY count DESC) AS Rank, Number, Count, Rate, Time FROM loto6_statistics ORDER BY count DESC, Number ASC")
 	if err != nil {
 		panic(err.Error())
 	}
@@ -39,7 +39,7 @@ func GetLoto6Statistics() []*Loto6Statistics {
 func GetLoto6StatisticsCsv() []*Loto6StatisticsCsv {
 	statistics := Loto6StatisticsCsv{}
 	data := []*Loto6StatisticsCsv{}
-	rows, err := Db.Query("SELECT RANK() OVER(ORDER BY count DESC) AS Rank, Number, Count, Rate FROM loto6_statistics ORDER BY count DESC")
+	rows, err := Db.Query("SELECT RANK() OVER(ORDER BY count DESC) AS Rank, Number, Count, Rate FROM loto6_statistics ORDER BY count DESC, Number ASC")
 	if err != nil {
 		panic(err.Error())
 	}
