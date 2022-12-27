@@ -9,6 +9,7 @@
                 <tr>
                     <th id="time">Time</th>
                     <th colspan="7">Input Numbers</th>
+                    <th>Random</th>
                     <th colspan="2">Check</th>
                 </tr>
             </thead>
@@ -22,6 +23,7 @@
                     <td><input type="text" v-model="predictions[index].input_number_5"></td>
                     <td><input type="text" v-model="predictions[index].input_number_6"></td>
                     <td><input type="text" v-model="predictions[index].input_number_7"></td>
+                    <td><button @click="(generateRandomNumbers(index))">Execute</button></td>
                     <td><button @click="(determineLoto7Prediction(index))">Check</button></td>
                     <td><div v-show="predictions[index].infoflag=='1'">{{predictions[index].info}}</div></td>
                 </tr>
@@ -35,6 +37,7 @@
 <script>
 import HeaderComponent from "../modules/header.vue";
 import axios from 'axios';
+import {getRandomInt} from '../../util/functionUtil.js';
 export default {
     name: 'PredictLoto7Page',
     components: {
@@ -82,6 +85,53 @@ export default {
             .then(function(response) {
                 console.log(response);
             })
+        },
+        generateRandomNumbers(index) {
+            let randomNumbers = [];
+            let isDuplication = true;
+            let pushCount = 0;
+            for (; pushCount < 7; pushCount++) {
+                while (isDuplication) {
+                    const number = getRandomInt(1, 37);
+                    if (randomNumbers.includes(number)) {
+                        continue;
+                    }
+                    randomNumbers.push(number);
+                    isDuplication = false;
+                }
+                isDuplication = true;
+            }
+            randomNumbers.sort((a, b) => a - b);
+            this.predictions[index].infoflag = '2';
+            this.predictions[index].info = '';
+            for (let i = 0; i < 7; i++) {
+                randomNumbers[i] = String(randomNumbers[i]);
+                switch (i) {
+                    case 0:
+                        this.predictions[index].input_number_1 = randomNumbers[i];
+                        break;
+                    case 1:
+                        this.predictions[index].input_number_2 = randomNumbers[i];
+                        break;
+                    case 2:
+                        this.predictions[index].input_number_3 = randomNumbers[i];
+                        break;
+                    case 3:
+                        this.predictions[index].input_number_4 = randomNumbers[i];
+                        break;
+                    case 4:
+                        this.predictions[index].input_number_5 = randomNumbers[i];
+                        break;
+                    case 5:
+                        this.predictions[index].input_number_6 = randomNumbers[i];
+                        break;
+                    case 6:
+                        this.predictions[index].input_number_7 = randomNumbers[i];
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }
