@@ -3,7 +3,7 @@ package Models
 import (
 	"strconv"
 
-	db "../DB"
+	db "loto_depository/src/DB"
 
 	_ "github.com/lib/pq"
 )

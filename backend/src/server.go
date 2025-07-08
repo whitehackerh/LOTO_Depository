@@ -1,10 +1,10 @@
 package main
 
 import (
-	controller "./Controllers"
-	"github.com/labstack/echo"
-	"github.com/labstack/echo/middleware"
-	echomw "github.com/labstack/echo/middleware"
+	controller "loto_depository/src/Controllers"
+
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 func main() {
@@ -16,7 +16,7 @@ func main() {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
-	e.Use(echomw.CORSWithConfig(echomw.CORSConfig{
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 		AllowOrigins: []string{"*"},
 		AllowHeaders: []string{echo.HeaderContentType},
 		AllowMethods: []string{echo.POST},

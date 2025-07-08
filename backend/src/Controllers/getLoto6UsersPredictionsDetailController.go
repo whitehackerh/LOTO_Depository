@@ -3,8 +3,9 @@ package Controllers
 import (
 	"net/http"
 
-	service "../Services"
-	"github.com/labstack/echo"
+	service "loto_depository/src/Services"
+
+	"github.com/labstack/echo/v4"
 )
 
 type Loto6PredictionsDetail struct {

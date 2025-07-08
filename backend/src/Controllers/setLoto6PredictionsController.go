@@ -3,9 +3,11 @@ package Controllers
 import (
 	"net/http"
 
-	service "../Services"
-	stash "../StashImportCycle"
-	"github.com/labstack/echo"
+	service "loto_depository/src/Services"
+
+	stash "loto_depository/src/StashImportCycle"
+
+	"github.com/labstack/echo/v4"
 )
 
 func SetLoto6Predictions() echo.HandlerFunc {

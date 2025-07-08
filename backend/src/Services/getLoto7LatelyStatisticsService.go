@@ -3,7 +3,7 @@ package Services
 import (
 	"sort"
 
-	model "../Models"
+	model "loto_depository/src/Models"
 )
 
 type Loto7LatelyStatistics struct {

@@ -4,7 +4,8 @@ import (
 	"log"
 	"os"
 
-	model "../Models"
+	model "loto_depository/src/Models"
+
 	"github.com/gocarina/gocsv"
 )
 

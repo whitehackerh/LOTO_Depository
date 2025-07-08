@@ -3,7 +3,7 @@ package Services
 import (
 	"strconv"
 
-	model "../Models"
+	model "loto_depository/src/Models"
 )
 
 type DetermineLoto6Response struct {

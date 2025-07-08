@@ -5,7 +5,8 @@ import (
 	"strconv"
 	"time"
 
-	model "../Models"
+	model "loto_depository/src/Models"
+
 	"github.com/dgrijalva/jwt-go"
 )
 

@@ -3,8 +3,9 @@ package Services
 import (
 	"strconv"
 
-	model "../Models"
-	stash "../StashImportCycle"
+	model "loto_depository/src/Models"
+
+	stash "loto_depository/src/StashImportCycle"
 )
 
 func SetLoto6Predictions(param *stash.RegisterLoto6Predictions) bool {

@@ -1,7 +1,7 @@
 package Services
 
 import (
-	model "../Models"
+	model "loto_depository/src/Models"
 )
 
 func GetLoto6Statistics() []*model.Loto6Statistics {

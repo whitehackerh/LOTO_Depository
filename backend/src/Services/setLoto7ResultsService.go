@@ -3,7 +3,7 @@ package Services
 import (
 	"strconv"
 
-	model "../Models"
+	model "loto_depository/src/Models"
 )
 
 func SetLoto7Results(body map[string]string) bool {

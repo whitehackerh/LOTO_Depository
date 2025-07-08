@@ -3,7 +3,7 @@ package Models
 import (
 	"fmt"
 
-	db "../DB"
+	db "loto_depository/src/DB"
 )
 
 type Loto7UsersPredictions struct {

@@ -1,7 +1,7 @@
 package Services
 
 import (
-	model "../Models"
+	model "loto_depository/src/Models"
 )
 
 func CreateUser(body map[string]string) bool {

@@ -1,6 +1,6 @@
 package Models
 
-import db "../DB"
+import db "loto_depository/src/DB"
 
 type Loto7Statistics struct {
 	Rank   int

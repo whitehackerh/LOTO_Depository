@@ -1,7 +1,7 @@
 package Services
 
 import (
-	model "../Models"
+	model "loto_depository/src/Models"
 )
 
 func GetNewestLoto7Result() []*model.Loto7NewestTime {

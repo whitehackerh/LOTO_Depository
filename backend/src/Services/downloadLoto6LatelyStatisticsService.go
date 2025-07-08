@@ -4,7 +4,7 @@ import (
 	"sort"
 	"strconv"
 
-	model "../Models"
+	model "loto_depository/src/Models"
 )
 
 type Loto6LatelyStatisticsForCsv struct {

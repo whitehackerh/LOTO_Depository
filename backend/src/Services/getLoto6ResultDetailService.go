@@ -3,7 +3,7 @@ package Services
 import (
 	"strconv"
 
-	model "../Models"
+	model "loto_depository/src/Models"
 )
 
 func GetLoto6ResultDetail(body map[string]string) []*model.Loto6ResultDetail {

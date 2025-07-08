@@ -3,7 +3,7 @@ package Services
 import (
 	"strconv"
 
-	model "../Models"
+	model "loto_depository/src/Models"
 )
 
 func GetLoto7UsersPredictions(body map[string]string) map[int]map[string]interface{} {
