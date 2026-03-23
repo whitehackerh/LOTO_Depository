@@ -41,8 +41,8 @@
                 <tbody>
                     <tr v-for="(prediction, index) in predictions" :key="prediction.Time_Id">
                         <td><input type="checkbox" :value="prediction.Time_Id" v-model="checkSingle[index]" @click="clickCheckbox(prediction.Time_Id, index)"></td>
-                        <input type="hidden" :value="predictions[index].Time" v-model="predictions[index].Time">
-                        <input type="hidden" :value="predictions[index].Time_Id" v-model="predictions[index].Time_Id">
+                        <input type="hidden" v-model="predictions[index].Time">
+                        <input type="hidden" v-model="predictions[index].Time_Id">
                         <td><input type="text" v-model="predictions[index].Number_1" :readonly="read[index]"></td>
                         <td><input type="text" v-model="predictions[index].Number_2" :readonly="read[index]"></td>
                         <td><input type="text" v-model="predictions[index].Number_3" :readonly="read[index]"></td>
