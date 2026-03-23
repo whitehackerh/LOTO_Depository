@@ -49,5 +49,8 @@
     "last 2 versions",
     "not dead",
     "not ie 11"
-  ]
+  ],
+  "overrides": {
+    "serialize-javascript": "^7.0.3"
+  }
 }
