@@ -3,8 +3,8 @@ module loto_depository
 go 1.24.4
 
 require (
-	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gocarina/gocsv v0.0.0-20240520201108-78e41c74b4b1
+	github.com/golang-jwt/jwt/v5 v5.3.1
 	github.com/labstack/echo/v4 v4.13.4
 	github.com/lib/pq v1.10.9
 )

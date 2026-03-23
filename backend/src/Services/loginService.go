@@ -7,7 +7,7 @@ import (
 
 	model "loto_depository/src/Models"
 
-	"github.com/dgrijalva/jwt-go"
+	"github.com/golang-jwt/jwt/v5"
 )
 
 func Login(body map[string]string) []byte {
@@ -20,9 +20,9 @@ func Login(body map[string]string) []byte {
 		return encodedJson
 	}
 	if body["user_name"] == user[0].User_name || body["password"] == user[0].Password {
-		claims := jwt.StandardClaims{
+		claims := jwt.RegisteredClaims{
 			Issuer:    strconv.Itoa(user[0].User_id),
-			ExpiresAt: time.Now().Add(time.Hour * 24).Unix(),
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour * 24)),
 		}
 		jwtToken := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 		token, _ := jwtToken.SignedString([]byte("secret"))
